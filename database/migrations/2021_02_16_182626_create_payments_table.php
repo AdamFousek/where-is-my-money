@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupsTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->uuid('uuid');
-            $table->softDeletes();
+            $table->unsignedInteger('amount');
+            $table->bigIncrements('category_id');
+            $table->bigIncrements('group_id');
+            $table->bigIncrements('user_id');
             $table->timestamps();
-        });
-
-        Schema::create('group_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('user_id');
 
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('user_id')->references('id')->on('users');
@@ -37,10 +34,10 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::table('group_user', function(Blueprint $table) {
-           $table->dropForeign('group_user_group_id_foreign');
+        Schema::table('payments', function(Blueprint $table) {
+            $table->dropForeign('payment_user_user_id_foreign');
+            $table->dropForeign('group_payment_group_id_foreign');
         });
-        Schema::dropIfExists('groups');
-        Schema::dropIfExists('group_user');
+        Schema::dropIfExists('payments');
     }
 }

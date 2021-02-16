@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Group;
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class GroupFactory extends Factory
+class PaymentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Group::class;
+    protected $model = Payment::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +21,10 @@ class GroupFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->text(100);
-        $slug = Str::uuid();
         return [
-            'name' => $title,
-            'uuid' => $slug,
+            'title' => $this->faker->words(2),
+            'amount' => $this->faker->numberBetween(),
+            ''
         ];
     }
 }
