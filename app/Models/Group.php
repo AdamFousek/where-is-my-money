@@ -19,11 +19,22 @@ class Group extends Model
     ];
 
     /**
-     * Return all
+     * Return all users belong in groups
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Return all payments in group
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

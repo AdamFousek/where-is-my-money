@@ -37,10 +37,9 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::table('group_user', function(Blueprint $table) {
-           $table->dropForeign('group_user_group_id_foreign');
-        });
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('groups');
         Schema::dropIfExists('group_user');
+        Schema::enableForeignKeyConstraints();
     }
 }

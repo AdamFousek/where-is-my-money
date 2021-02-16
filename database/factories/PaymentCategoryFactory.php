@@ -28,15 +28,12 @@ class PaymentCategoryFactory extends Factory
             '#0000FF',
             '#FF00FF',
         ];
-        $category = PaymentCategory::all()->random(1);
-        $user = User::has('group')->random(1);
+        $user = User::all()->random(1);
 
         return [
             'name' => $this->faker->words(2),
-            'color' => $colors[rand(0,count($colors))],
-            'user_id' => $user->pluck('id'),
-            'category_id' => $category->pluck('id'),
-            'group_id' => $user->groups()->random(1)->pluck('id'),
+            'color' => $colors[rand(0,3)],
+            'user_id' => $user->id,
         ];
     }
 }

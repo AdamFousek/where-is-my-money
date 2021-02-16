@@ -67,4 +67,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Group::class);
     }
+
+    /**
+     * All users payments
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
+     * Return categories that user created
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categories()
+    {
+        return $this->hasMany(PaymentCategory::class);
+    }
 }
