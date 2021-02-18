@@ -18,9 +18,11 @@ class CreatePaymentCategoriesTable extends Migration
             $table->string('name');
             $table->string('color');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('group_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('group_id')->references('id')->on('groups');
         });
         Schema::table('payments', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('payment_categories');

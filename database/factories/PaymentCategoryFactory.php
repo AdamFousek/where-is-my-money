@@ -28,12 +28,10 @@ class PaymentCategoryFactory extends Factory
             '#0000FF',
             '#FF00FF',
         ];
-        $user = User::all()->random(1);
 
         return [
-            'name' => $this->faker->words(2),
+            'name' => implode(' ', $this->faker->words(2)),
             'color' => $colors[rand(0,3)],
-            'user_id' => $user->id,
         ];
     }
 }

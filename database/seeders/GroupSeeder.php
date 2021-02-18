@@ -15,8 +15,8 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        Group::factory(10)->create()->each(function ($g) {
-            $g->users()->attach(User::all()->random(rand(0,10))->pluck('id'));
+        Group::factory(5)->create()->each(function ($g) {
+            $g->users()->attach(User::all()->random(rand(1,5))->pluck('id'));
         });
     }
 }

@@ -18,6 +18,7 @@ class PaymentCategory extends Model
         'name',
         'color',
         'user_id',
+        'group_id',
     ];
 
     /**
@@ -28,5 +29,15 @@ class PaymentCategory extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Return group that owns category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

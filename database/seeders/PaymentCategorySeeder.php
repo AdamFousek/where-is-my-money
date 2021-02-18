@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Group;
 use App\Models\PaymentCategory;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,14 @@ class PaymentCategorySeeder extends Seeder
      */
     public function run()
     {
-        PaymentCategory::factory(10)->create();
+        $groups = Group::all();
+        foreach ($groups as $group) {
+            $group->categories()->saveMany(
+                PaymentCategory::factory(2)->make([
+                    'group_id' => $group->id,
+                    'user_id' => $group->users->random()->id
+                ])
+            );
+        }
     }
 }

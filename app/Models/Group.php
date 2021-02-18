@@ -37,4 +37,14 @@ class Group extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    /**
+     * All categories that belongs to group
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categories()
+    {
+        return $this->hasMany(PaymentCategory::class);
+    }
 }
