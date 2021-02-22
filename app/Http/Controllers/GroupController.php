@@ -4,9 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class GroupController extends Controller
 {
+    /**
+     * Dashboard with groups
+     */
+    public function index()
+    {
+        $user = Auth::user();
+
+        return Inertia::render('Groups/Index', [
+            'groups' => $user->groups()->with('users')->get(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
