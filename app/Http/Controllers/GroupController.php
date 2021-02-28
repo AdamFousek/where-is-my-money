@@ -46,11 +46,13 @@ class GroupController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Group  $group
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show(Group $group)
     {
-        //
+        return Inertia::render('Groups/Show', [
+            'group' => $group,
+        ]);
     }
 
     /**
