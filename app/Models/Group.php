@@ -16,6 +16,8 @@ class Group extends Model
      */
     protected $fillable = [
         'name',
+        'user_id',
+        'uuid',
     ];
 
     /**
@@ -46,5 +48,13 @@ class Group extends Model
     public function categories()
     {
         return $this->hasMany(PaymentCategory::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

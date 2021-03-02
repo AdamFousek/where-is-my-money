@@ -173,10 +173,11 @@
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="pb-14 sm:pb-20">
                 <slot></slot>
             </main>
 
+            <the-footer></the-footer>
             <!-- Modal Portal -->
             <portal-target name="modal" multiple>
             </portal-target>
@@ -191,6 +192,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import TheFooter from "@/Layouts/TheFooter";
 
     export default {
         components: {
@@ -200,6 +202,7 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
+            TheFooter,
         },
 
         data() {

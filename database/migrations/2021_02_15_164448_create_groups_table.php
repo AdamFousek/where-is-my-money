@@ -17,14 +17,17 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->string('name');
             $table->uuid('uuid');
+            $table->unsignedBigInteger('user_id');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('group_user', function (Blueprint $table) {
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('is_favorite');
+            $table->boolean('is_favorite')->default(0);
 
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('user_id')->references('id')->on('users');
