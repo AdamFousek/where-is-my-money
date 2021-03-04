@@ -3,6 +3,8 @@
         <template #header>
             <div class="flex justify-between items-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    <span v-if="isFavorite" @click="markFavoriteGroup()"><i class="fas fa-star text-yellow-400 cursor-pointer"></i></span>
+                    <span v-else @click="markFavoriteGroup()"><i class="far fa-star cursor-pointer"></i></span>
                     {{ group.name }}
                 </h2>
                 <inertia-link
@@ -29,9 +31,24 @@
 import AppLayout from '@/Layouts/AppLayout'
 export default {
     name: "Show.vue",
-    props: ['group'],
+    props: ['group', 'isFavorite'],
     components: {
         AppLayout,
+    },
+    data() {
+        return {
+            favoriteForm: this.$inertia.form({}),
+        }
+    },
+    methods: {
+        markFavoriteGroup() {
+            this.favoriteForm.post(route('group.toggleFavorite', this.group), {
+                onSuccess: () => {
+                    this.favoriteForm.reset()
+                },
+                onError: () => {}
+            })
+        },
     },
 }
 </script>

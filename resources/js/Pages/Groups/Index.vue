@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="bg-white mb-8 p-4 overflow-hidden shadow-xl sm:rounded-lg" v-for="group in groups" :key="group.id">
-                    <div class="flex flex-wrap content-between justify-start">
+                    <div class="flex flex-wrap justify-between items-center">
                         <h2 class="text-xl my-4">{{ group.name }}</h2>
                         <inertia-link v-if="group.user.id === $page.props.user.id"
                                       :href="route('group.edit', group)"

@@ -16,9 +16,13 @@ class GroupController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $groups = $user->groups()
+            ->with(['users', 'user'])
+            ->orderby('name')
+            ->get();
 
         return Inertia::render('Groups/Index', [
-            'groups' => $user->groups()->with(['users', 'user'])->get(),
+            'groups' => $groups,
         ]);
     }
 
@@ -36,7 +40,7 @@ class GroupController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -49,6 +53,9 @@ class GroupController extends Controller
         $group->user_id = Auth::id();
         $group->uuid = Str::uuid();
         $group->save();
+        $group->users()->attach(Auth::id());
+
+        return redirect()->route('group.index');
     }
 
     /**
@@ -59,8 +66,11 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
+        $user = $group->users()->where('id', Auth::id())->first();
+
         return Inertia::render('Groups/Show', [
             'group' => $group,
+            'isFavorite' => $user->pivot->is_favorite,
         ]);
     }
 
@@ -98,5 +108,21 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         //
+    }
+
+    /**
+     * Toggle group as favorite
+     *
+     * @param Group $group
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function toggleFavorite(Group $group)
+    {
+        $user = $group->users()->where('id', Auth::id())->first();
+        $group->users()->updateExistingPivot(Auth::id(), [
+            "is_favorite" => !$user->pivot->is_favorite
+        ]);
+
+        return back();
     }
 }
