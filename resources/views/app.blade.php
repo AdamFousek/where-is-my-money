@@ -21,4 +21,8 @@
     <body class="font-sans antialiased">
         @inertia
     </body>
+    <script>
+        window._locale = '{{ app()->getLocale() }}';
+        window._translations = {!! cache('translations') !!};
+    </script>
 </html>

@@ -15,26 +15,25 @@
                         :href="route('group.create')"
                         class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:shadow-outline-green transition ease-in-out duration-150"
                     >
-                        Create Group
+                        {{ trans['Create group'] }}
                     </inertia-link>
                 </div>
 
                 <div class="bg-white mb-8 p-4 overflow-hidden shadow-xl sm:rounded-lg" v-for="group in groups" :key="group.id">
                     <div class="flex flex-wrap justify-between items-center">
-                        <h2 class="text-xl my-4">{{ group.name }}</h2>
-                        <inertia-link v-if="group.user.id === $page.props.user.id"
-                                      :href="route('group.edit', group)"
-                                      class="inline-flex items-center px-4 py-2 bg-yellow-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:border-yellow-900 focus:shadow-outline-yellow transition ease-in-out duration-150"
-                        >
-                            Edit Group
-                        </inertia-link>
+                        <h2 class="text-xl my-4">
+                            <span v-if="group.pivot.is_favorite">
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </span>
+                            {{ group.name }}
+                        </h2>
                     </div>
-                    <p>Number of users: <span> {{ group.users.length }}</span></p>
+                    <p>{{ trans['Number of users'] }} <span>0</span></p>
                     <inertia-link
                         :href="route('group.show', group)"
                         class="inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150"
                     >
-                        Show detail
+                        {{ trans['Show group'] }}
                     </inertia-link>
                 </div>
             </div>
@@ -46,7 +45,10 @@
 import AppLayout from '@/Layouts/AppLayout'
 
 export default {
-    props: ['groups'],
+    props: {
+        groups: Array,
+        trans: Object,
+    },
     components: {
         AppLayout,
     },
