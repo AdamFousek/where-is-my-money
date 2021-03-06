@@ -17,4 +17,8 @@ return [
     'password' => 'Nesprávné heslo.',
     'throttle' => 'Příliš mnoho pokusů o přihlášení. Zkuste to prosím za :seconds vteřin.',
 
+    'errorMessage' => 'Omlouváme se, něco je špatně.',
+
+    'email' => 'Emailová adresa',
+
 ];
