@@ -3,13 +3,13 @@
         <template #header>
             <div class="flex justify-between items-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Create group
+                    {{ __('groups.create.title') }}
                 </h2>
                 <inertia-link
                     :href="route('group.index')"
                     class="inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150"
                 >
-                    Back to groups
+                    {{ __('groups.back') }}
                 </inertia-link>
             </div>
         </template>
@@ -20,19 +20,15 @@
                     <component-form @submitted="createGroup">
                         <template #form>
                             <div class="col-span-6 sm:col-span-4">
-                                <jet-label for="name" value="Group name" />
+                                <jet-label for="name" :value="__('groups.create.input.name')" />
                                 <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" ref="name" autocomplete="group-name" />
                                 <jet-input-error :message="form.errors.name" class="mt-2" />
                             </div>
                         </template>
 
                         <template #actions>
-                            <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                                Created.
-                            </jet-action-message>
-
                             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Create
+                                {{ __('groups.create.button.create') }}
                             </jet-button>
                         </template>
                     </component-form>

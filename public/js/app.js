@@ -2755,7 +2755,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['href', 'active'],
   computed: {
     classes: function classes() {
-      return this.active ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out' : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
+      return this.active ? 'inline-flex items-center px-1 pt-1 border-b-2 border-green-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-green-700 transition duration-150 ease-in-out' : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
     }
   }
 });
@@ -3143,42 +3143,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3207,13 +3171,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    switchToTeam: function switchToTeam(team) {
-      this.$inertia.put(route('current-team.update'), {
-        'team_id': team.id
-      }, {
-        preserveState: false
-      });
-    },
     logout: function logout() {
       this.$inertia.post(route('logout'));
     }
@@ -4352,10 +4309,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -4454,17 +4407,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    groups: Array,
-    trans: Object
+    groups: Array
   },
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default
@@ -31006,7 +30952,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                Dashboard\n                            "
+                              "\n                                " +
+                                _vm._s(_vm.__("menu.dashboard")) +
+                                "\n                            "
                             )
                           ]
                         ),
@@ -31021,7 +30969,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                Groups\n                            "
+                              "\n                                " +
+                                _vm._s(_vm.__("menu.groups")) +
+                                "\n                            "
                             )
                           ]
                         )
@@ -31131,7 +31081,11 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                        Manage Account\n                                    "
+                                          "\n                                        " +
+                                            _vm._s(
+                                              _vm.__("menu.manageAccount")
+                                            ) +
+                                            "\n                                    "
                                         )
                                       ]
                                     ),
@@ -31145,7 +31099,9 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                        Profile\n                                    "
+                                          "\n                                        " +
+                                            _vm._s(_vm.__("menu.profile")) +
+                                            "\n                                    "
                                         )
                                       ]
                                     ),
@@ -31162,7 +31118,9 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                        API Tokens\n                                    "
+                                              "\n                                        " +
+                                                _vm._s(_vm.__("menu.tokens")) +
+                                                "\n                                    "
                                             )
                                           ]
                                         )
@@ -31188,7 +31146,9 @@ var render = function() {
                                           { attrs: { as: "button" } },
                                           [
                                             _vm._v(
-                                              "\n                                            Logout\n                                        "
+                                              "\n                                            " +
+                                                _vm._s(_vm.__("menu.logout")) +
+                                                "\n                                        "
                                             )
                                           ]
                                         )
@@ -31293,7 +31253,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                        Dashboard\n                    "
+                          "\n                        " +
+                            _vm._s(_vm.__("menu.dashboard")) +
+                            "\n                    "
                         )
                       ]
                     ),
@@ -31308,7 +31270,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                        Groups\n                    "
+                          "\n                        " +
+                            _vm._s(_vm.__("menu.groups")) +
+                            "\n                    "
                         )
                       ]
                     )
@@ -31365,7 +31329,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                            Profile\n                        "
+                              "\n                            " +
+                                _vm._s(_vm.__("menu.profile")) +
+                                "\n                        "
                             )
                           ]
                         ),
@@ -31383,7 +31349,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                            API Tokens\n                        "
+                                  "\n                            " +
+                                    _vm._s(_vm.__("menu.tokens")) +
+                                    "\n                        "
                                 )
                               ]
                             )
@@ -31406,155 +31374,17 @@ var render = function() {
                               { attrs: { as: "button" } },
                               [
                                 _vm._v(
-                                  "\n                                Logout\n                            "
+                                  "\n                                " +
+                                    _vm._s(_vm.__("menu.logout")) +
+                                    "\n                            "
                                 )
                               ]
                             )
                           ],
                           1
-                        ),
-                        _vm._v(" "),
-                        _vm.$page.props.jetstream.hasTeamFeatures
-                          ? [
-                              _c("div", {
-                                staticClass: "border-t border-gray-200"
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "block px-4 py-2 text-xs text-gray-400"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Manage Team\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "jet-responsive-nav-link",
-                                {
-                                  attrs: {
-                                    href: _vm.route(
-                                      "teams.show",
-                                      _vm.$page.props.user.current_team
-                                    ),
-                                    active: _vm.route().current("teams.show")
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Team Settings\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "jet-responsive-nav-link",
-                                {
-                                  attrs: {
-                                    href: _vm.route("teams.create"),
-                                    active: _vm.route().current("teams.create")
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Create New Team\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("div", {
-                                staticClass: "border-t border-gray-200"
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "block px-4 py-2 text-xs text-gray-400"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Switch Teams\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _vm._l(_vm.$page.props.user.all_teams, function(
-                                team
-                              ) {
-                                return [
-                                  _c(
-                                    "form",
-                                    {
-                                      key: team.id,
-                                      on: {
-                                        submit: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.switchToTeam(team)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "jet-responsive-nav-link",
-                                        { attrs: { as: "button" } },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "flex items-center"
-                                            },
-                                            [
-                                              team.id ==
-                                              _vm.$page.props.user
-                                                .current_team_id
-                                                ? _c(
-                                                    "svg",
-                                                    {
-                                                      staticClass:
-                                                        "mr-2 h-5 w-5 text-green-400",
-                                                      attrs: {
-                                                        fill: "none",
-                                                        "stroke-linecap":
-                                                          "round",
-                                                        "stroke-linejoin":
-                                                          "round",
-                                                        "stroke-width": "2",
-                                                        stroke: "currentColor",
-                                                        viewBox: "0 0 24 24"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("path", {
-                                                        attrs: {
-                                                          d:
-                                                            "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                : _vm._e(),
-                                              _vm._v(" "),
-                                              _c("div", [
-                                                _vm._v(_vm._s(team.name))
-                                              ])
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]
-                              })
-                            ]
-                          : _vm._e()
+                        )
                       ],
-                      2
+                      1
                     )
                   ]
                 )
@@ -33403,7 +33233,13 @@ var render = function() {
                   staticClass:
                     "font-semibold text-xl text-gray-800 leading-tight"
                 },
-                [_vm._v("\n            Dashboard\n        ")]
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.__("dashboard.title")) +
+                      "\n        "
+                  )
+                ]
               )
             ]
           },
@@ -33467,7 +33303,13 @@ var render = function() {
                       staticClass:
                         "font-semibold text-xl text-gray-800 leading-tight"
                     },
-                    [_vm._v("\n                Create group\n            ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.__("groups.create.title")) +
+                          "\n            "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -33477,7 +33319,13 @@ var render = function() {
                         "inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150",
                       attrs: { href: _vm.route("group.index") }
                     },
-                    [_vm._v("\n                Back to groups\n            ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.__("groups.back")) +
+                          "\n            "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -33511,7 +33359,10 @@ var render = function() {
                           { staticClass: "col-span-6 sm:col-span-4" },
                           [
                             _c("jet-label", {
-                              attrs: { for: "name", value: "Group name" }
+                              attrs: {
+                                for: "name",
+                                value: _vm.__("groups.create.input.name")
+                              }
                             }),
                             _vm._v(" "),
                             _c("jet-input", {
@@ -33547,19 +33398,6 @@ var render = function() {
                     fn: function() {
                       return [
                         _c(
-                          "jet-action-message",
-                          {
-                            staticClass: "mr-3",
-                            attrs: { on: _vm.form.recentlySuccessful }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Created.\n                        "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
                           "jet-button",
                           {
                             class: { "opacity-25": _vm.form.processing },
@@ -33567,7 +33405,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                            Create\n                        "
+                              "\n                            " +
+                                _vm._s(_vm.__("groups.create.button.create")) +
+                                "\n                        "
                             )
                           ]
                         )
@@ -33623,7 +33463,13 @@ var render = function() {
                     staticClass:
                       "font-semibold text-xl text-gray-800 leading-tight"
                   },
-                  [_vm._v("\n                Your groups\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("groups.title")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ])
             ]
@@ -33653,7 +33499,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.trans["Create group"]) +
+                        _vm._s(_vm.__("groups.buttons.create")) +
                         "\n                "
                     )
                   ]
@@ -33695,27 +33541,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v(_vm._s(_vm.trans["Number of users"]) + " "),
+                    _vm._v(_vm._s(_vm.__("groups.card.numberOfUsers")) + " "),
                     _c("span", [_vm._v("0")])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "inertia-link",
-                    {
-                      staticClass:
-                        "inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150",
-                      attrs: { href: _vm.route("group.show", group) }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.trans["Show group"]) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                ],
-                1
+                  ])
+                ]
               )
             })
           ],
@@ -33814,7 +33643,13 @@ var render = function() {
                         "inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150",
                       attrs: { href: _vm.route("group.index") }
                     },
-                    [_vm._v("\n                Back to groups\n            ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.__("groups.back")) +
+                          "\n            "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -33837,7 +33672,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                Payments:\n                @todo\n            "
+                "\n                " +
+                  _vm._s(_vm.__("groups.show.payments")) +
+                  "\n            "
               )
             ]
           )
@@ -34434,7 +34271,13 @@ var render = function() {
                   staticClass:
                     "font-semibold text-xl text-gray-800 leading-tight"
                 },
-                [_vm._v("\n            Profile\n        ")]
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.__("profile.title")) +
+                      "\n        "
+                  )
+                ]
               )
             ]
           },
@@ -34771,7 +34614,13 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Update Password\n    ")]
+          return [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.__("profile.update_password")) +
+                "\n    "
+            )
+          ]
         },
         proxy: true
       },
@@ -34780,7 +34629,9 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Ensure your account is using a long, random password to stay secure.\n    "
+              "\n        " +
+                _vm._s(_vm.__("profile.password_policy")) +
+                "\n    "
             )
           ]
         },
@@ -34795,7 +34646,10 @@ var render = function() {
               { staticClass: "col-span-6 sm:col-span-4" },
               [
                 _c("jet-label", {
-                  attrs: { for: "current_password", value: "Current Password" }
+                  attrs: {
+                    for: "current_password",
+                    value: _vm.__("profile.currentPassword.title")
+                  }
                 }),
                 _vm._v(" "),
                 _c("jet-input", {
@@ -34828,7 +34682,10 @@ var render = function() {
               { staticClass: "col-span-6 sm:col-span-4" },
               [
                 _c("jet-label", {
-                  attrs: { for: "password", value: "New Password" }
+                  attrs: {
+                    for: "password",
+                    value: _vm.__("profile.newPassword.title")
+                  }
                 }),
                 _vm._v(" "),
                 _c("jet-input", {
@@ -34863,7 +34720,7 @@ var render = function() {
                 _c("jet-label", {
                   attrs: {
                     for: "password_confirmation",
-                    value: "Confirm Password"
+                    value: _vm.__("profile.confirmPassword.title")
                   }
                 }),
                 _vm._v(" "),
@@ -34904,7 +34761,13 @@ var render = function() {
                 staticClass: "mr-3",
                 attrs: { on: _vm.form.recentlySuccessful }
               },
-              [_vm._v("\n            Saved.\n        ")]
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("profile.actions.saved")) +
+                    "\n        "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -34913,7 +34776,13 @@ var render = function() {
                 class: { "opacity-25": _vm.form.processing },
                 attrs: { disabled: _vm.form.processing }
               },
-              [_vm._v("\n            Save\n        ")]
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("profile.actions.save")) +
+                    "\n        "
+                )
+              ]
             )
           ]
         },
@@ -34951,7 +34820,13 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Profile Information\n    ")]
+          return [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.__("profile.profile_information")) +
+                "\n    "
+            )
+          ]
         },
         proxy: true
       },
@@ -34960,7 +34835,9 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Update your account's profile information and email address.\n    "
+              "\n        " +
+                _vm._s(_vm.__("profile.update_information")) +
+                "\n    "
             )
           ]
         },
@@ -34983,7 +34860,10 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("jet-label", {
-                      attrs: { for: "photo", value: "Photo" }
+                      attrs: {
+                        for: "photo",
+                        value: _vm.__("profile.photo.title")
+                      }
                     }),
                     _vm._v(" "),
                     _c(
@@ -35048,7 +34928,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                Select A New Photo\n            "
+                          "\n                " +
+                            _vm._s(_vm.__("profile.photo.new")) +
+                            "\n            "
                         )
                       ]
                     ),
@@ -35068,7 +34950,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                Remove Photo\n            "
+                              "\n                " +
+                                _vm._s(_vm.__("profile.photo.remove")) +
+                                "\n            "
                             )
                           ]
                         )
@@ -35087,7 +34971,9 @@ var render = function() {
               "div",
               { staticClass: "col-span-6 sm:col-span-4" },
               [
-                _c("jet-label", { attrs: { for: "name", value: "Name" } }),
+                _c("jet-label", {
+                  attrs: { for: "name", value: _vm.__("profile.name.title") }
+                }),
                 _vm._v(" "),
                 _c("jet-input", {
                   staticClass: "mt-1 block w-full",
@@ -35113,7 +34999,9 @@ var render = function() {
               "div",
               { staticClass: "col-span-6 sm:col-span-4" },
               [
-                _c("jet-label", { attrs: { for: "email", value: "Email" } }),
+                _c("jet-label", {
+                  attrs: { for: "email", value: _vm.__("profile.email.title") }
+                }),
                 _vm._v(" "),
                 _c("jet-input", {
                   staticClass: "mt-1 block w-full",
@@ -35148,7 +35036,13 @@ var render = function() {
                 staticClass: "mr-3",
                 attrs: { on: _vm.form.recentlySuccessful }
               },
-              [_vm._v("\n            Saved.\n        ")]
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("profile.actions.saved")) +
+                    "\n        "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -35157,7 +35051,13 @@ var render = function() {
                 class: { "opacity-25": _vm.form.processing },
                 attrs: { disabled: _vm.form.processing }
               },
-              [_vm._v("\n            Save\n        ")]
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("profile.actions.save")) +
+                    "\n        "
+                )
+              ]
             )
           ]
         },
@@ -35275,7 +35175,13 @@ var render = function() {
                       "inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150",
                     attrs: { href: _vm.route("login") }
                   },
-                  [_vm._v("\n                Login\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("welcome.login")) +
+                        "\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _vm.canRegister
@@ -35286,7 +35192,13 @@ var render = function() {
                           "inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150",
                         attrs: { href: _vm.route("register") }
                       },
-                      [_vm._v("\n                Register\n            ")]
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.__("welcome.register")) +
+                            "\n            "
+                        )
+                      ]
                     )
                   : _vm._e()
               ],

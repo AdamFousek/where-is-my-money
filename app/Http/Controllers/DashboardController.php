@@ -8,11 +8,20 @@ use Illuminate\Foundation\Application;
 
 class DashboardController extends Controller
 {
+    /**
+     * Dashboard after log in
+     *
+     * @return \Inertia\Response
+     */
     public function dashboard()
     {
         return Inertia::render('Dashboard');
     }
 
+    /**
+     * Public index page
+     * @return \Inertia\Response
+     */
     public function index()
     {
         return Inertia::render('Welcome', [
