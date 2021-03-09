@@ -2228,13 +2228,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     title: {
-      "default": 'Confirm Password'
+      type: String,
+      "default": 'default'
     },
     content: {
-      "default": 'For your security, please confirm your password to continue.'
+      type: String,
+      "default": 'default'
     },
     button: {
-      "default": 'Confirm'
+      type: String,
+      "default": 'default'
+    }
+  },
+  computed: {
+    cTitle: function cTitle() {
+      var title = this.__('jetstream.title');
+
+      if (this.title === 'default') {
+        return title;
+      }
+
+      return this.title;
+    },
+    cContent: function cContent() {
+      var content = this.__('jetstream.content');
+
+      if (this.content === 'default') {
+        return content;
+      }
+
+      return this.content;
+    },
+    cButton: function cButton() {
+      var button = this.__('jetstream.button');
+
+      if (this.button === 'default') {
+        return button;
+      }
+
+      return this.button;
     }
   },
   components: {
@@ -4178,6 +4210,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4595,7 +4629,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -4671,7 +4704,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
-//
 //
 //
 //
@@ -29637,7 +29669,7 @@ var render = function() {
             key: "title",
             fn: function() {
               return [
-                _vm._v("\n            " + _vm._s(_vm.title) + "\n        ")
+                _vm._v("\n            " + _vm._s(_vm.cTitle) + "\n        ")
               ]
             },
             proxy: true
@@ -29647,7 +29679,7 @@ var render = function() {
             fn: function() {
               return [
                 _vm._v(
-                  "\n            " + _vm._s(_vm.content) + "\n\n            "
+                  "\n            " + _vm._s(_vm.cContent) + "\n\n            "
                 ),
                 _c(
                   "div",
@@ -29656,7 +29688,10 @@ var render = function() {
                     _c("jet-input", {
                       ref: "password",
                       staticClass: "mt-1 block w-3/4",
-                      attrs: { type: "password", placeholder: "Password" },
+                      attrs: {
+                        type: "password",
+                        placeholder: _vm.__("jetstream.password")
+                      },
                       nativeOn: {
                         keyup: function($event) {
                           if (
@@ -29707,7 +29742,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Nevermind\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("jetstream.nevermind")) +
+                        "\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -29725,7 +29766,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                " +
-                        _vm._s(_vm.button) +
+                        _vm._s(_vm.cButton) +
                         "\n            "
                     )
                   ]
@@ -31538,7 +31579,13 @@ var render = function() {
           {
             key: "title",
             fn: function() {
-              return [_vm._v("\n            Create API Token\n        ")]
+              return [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("tokens.manager.create.title")) +
+                    "\n        "
+                )
+              ]
             },
             proxy: true
           },
@@ -31547,7 +31594,9 @@ var render = function() {
             fn: function() {
               return [
                 _vm._v(
-                  "\n            API tokens allow third-party services to authenticate with our application on your behalf.\n        "
+                  "\n            " +
+                    _vm._s(_vm.__("tokens.manager.create.description")) +
+                    "\n        "
                 )
               ]
             },
@@ -31561,7 +31610,12 @@ var render = function() {
                   "div",
                   { staticClass: "col-span-6 sm:col-span-4" },
                   [
-                    _c("jet-label", { attrs: { for: "name", value: "Name" } }),
+                    _c("jet-label", {
+                      attrs: {
+                        for: "name",
+                        value: _vm.__("tokens.manager.input.name")
+                      }
+                    }),
                     _vm._v(" "),
                     _c("jet-input", {
                       staticClass: "mt-1 block w-full",
@@ -31589,7 +31643,10 @@ var render = function() {
                       { staticClass: "col-span-6" },
                       [
                         _c("jet-label", {
-                          attrs: { for: "permissions", value: "Permissions" }
+                          attrs: {
+                            for: "permissions",
+                            value: _vm.__("tokens.manager.input.permissions")
+                          }
                         }),
                         _vm._v(" "),
                         _c(
@@ -31654,7 +31711,13 @@ var render = function() {
                     staticClass: "mr-3",
                     attrs: { on: _vm.createApiTokenForm.recentlySuccessful }
                   },
-                  [_vm._v("\n                Created.\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("tokens.created")) +
+                        "\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -31663,7 +31726,13 @@ var render = function() {
                     class: { "opacity-25": _vm.createApiTokenForm.processing },
                     attrs: { disabled: _vm.createApiTokenForm.processing }
                   },
-                  [_vm._v("\n                Create\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("tokens.create")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ]
             },
@@ -31690,7 +31759,9 @@ var render = function() {
                           fn: function() {
                             return [
                               _vm._v(
-                                "\n                    Manage API Tokens\n                "
+                                "\n                    " +
+                                  _vm._s(_vm.__("tokens.manager.edit.title")) +
+                                  "\n                "
                               )
                             ]
                           },
@@ -31701,7 +31772,11 @@ var render = function() {
                           fn: function() {
                             return [
                               _vm._v(
-                                "\n                    You may delete any of your existing tokens if they are no longer needed.\n                "
+                                "\n                    " +
+                                  _vm._s(
+                                    _vm.__("tokens.manager.edit.description")
+                                  ) +
+                                  "\n                "
                               )
                             ]
                           },
@@ -31744,7 +31819,13 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm._v(
-                                                    "\n                                    Last used " +
+                                                    "\n                                    " +
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "tokens.manager.edit.lastUsed"
+                                                        )
+                                                      ) +
+                                                      " " +
                                                       _vm._s(
                                                         token.last_used_ago
                                                       ) +
@@ -31770,7 +31851,13 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm._v(
-                                                    "\n                                    Permissions\n                                "
+                                                    "\n                                    " +
+                                                      _vm._s(
+                                                        _vm.__(
+                                                          "tokens.manager.edit.permission"
+                                                        )
+                                                      ) +
+                                                      "\n                                "
                                                   )
                                                 ]
                                               )
@@ -31791,7 +31878,13 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "\n                                    Delete\n                                "
+                                                "\n                                    " +
+                                                  _vm._s(
+                                                    _vm.__(
+                                                      "tokens.manager.edit.delete"
+                                                    )
+                                                  ) +
+                                                  "\n                                "
                                               )
                                             ]
                                           )
@@ -31809,7 +31902,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      3995867736
+                      402857507
                     )
                   })
                 ],
@@ -31831,7 +31924,13 @@ var render = function() {
           {
             key: "title",
             fn: function() {
-              return [_vm._v("\n            API Token\n        ")]
+              return [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("tokens.manager.show.title")) +
+                    "\n        "
+                )
+              ]
             },
             proxy: true
           },
@@ -31841,7 +31940,9 @@ var render = function() {
               return [
                 _c("div", [
                   _vm._v(
-                    "\n                Please copy your new API token. For your security, it won't be shown again.\n            "
+                    "\n                " +
+                      _vm._s(_vm.__("tokens.manager.show.description")) +
+                      "\n            "
                   )
                 ]),
                 _vm._v(" "),
@@ -31878,7 +31979,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Close\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("tokens.manager.show.close")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ]
             },
@@ -31898,7 +32005,13 @@ var render = function() {
           {
             key: "title",
             fn: function() {
-              return [_vm._v("\n            API Token Permissions\n        ")]
+              return [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("tokens.manager.permissions.title")) +
+                    "\n        "
+                )
+              ]
             },
             proxy: true
           },
@@ -31959,7 +32072,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Nevermind\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("tokens.manager.permissions.nevermind")) +
+                        "\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -31974,7 +32093,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Save\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("tokens.manager.permissions.save")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ]
             },
@@ -31994,7 +32119,13 @@ var render = function() {
           {
             key: "title",
             fn: function() {
-              return [_vm._v("\n            Delete API Token\n        ")]
+              return [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.__("tokens.manager.delete.title")) +
+                    "\n        "
+                )
+              ]
             },
             proxy: true
           },
@@ -32003,7 +32134,9 @@ var render = function() {
             fn: function() {
               return [
                 _vm._v(
-                  "\n            Are you sure you would like to delete this API token?\n        "
+                  "\n            " +
+                    _vm._s(_vm.__("tokens.manager.delete.description")) +
+                    "\n        "
                 )
               ]
             },
@@ -32022,7 +32155,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Nevermind\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("tokens.manager.delete.nevermind")) +
+                        "\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -32037,7 +32176,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Delete\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("tokens.manager.delete.delete")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ]
             },
@@ -32086,7 +32231,13 @@ var render = function() {
                   staticClass:
                     "font-semibold text-xl text-gray-800 leading-tight"
                 },
-                [_vm._v("\n            API Tokens\n        ")]
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.__("tokens.index.title")) +
+                      "\n        "
+                  )
+                ]
               )
             ]
           },
@@ -32155,7 +32306,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "mb-4 text-sm text-gray-600" }, [
         _vm._v(
-          "\n        This is a secure area of the application. Please confirm your password before continuing.\n    "
+          "\n        " + _vm._s(_vm.__("auth.confirm.description")) + "\n    "
         )
       ]),
       _vm._v(" "),
@@ -32176,7 +32327,10 @@ var render = function() {
             "div",
             [
               _c("jet-label", {
-                attrs: { for: "password", value: "Password" }
+                attrs: {
+                  for: "password",
+                  value: _vm.__("auth.confirm.password")
+                }
               }),
               _vm._v(" "),
               _c("jet-input", {
@@ -32211,7 +32365,13 @@ var render = function() {
                   class: { "opacity-25": _vm.form.processing },
                   attrs: { disabled: _vm.form.processing }
                 },
-                [_vm._v("\n                Confirm\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("auth.confirm.confirm")) +
+                      "\n            "
+                  )
+                ]
               )
             ],
             1
@@ -32262,7 +32422,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "mb-4 text-sm text-gray-600" }, [
         _vm._v(
-          "\n        Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.\n    "
+          "\n        " + _vm._s(_vm.__("auth.forgot.description")) + "\n    "
         )
       ]),
       _vm._v(" "),
@@ -32290,7 +32450,9 @@ var render = function() {
           _c(
             "div",
             [
-              _c("jet-label", { attrs: { for: "email", value: "Email" } }),
+              _c("jet-label", {
+                attrs: { for: "email", value: _vm.__("auth.forgot.email") }
+              }),
               _vm._v(" "),
               _c("jet-input", {
                 staticClass: "mt-1 block w-full",
@@ -32324,7 +32486,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                Email Password Reset Link\n            "
+                    "\n                " +
+                      _vm._s(_vm.__("auth.forgot.send")) +
+                      "\n            "
                   )
                 ]
               )
@@ -32400,7 +32564,7 @@ var render = function() {
             "div",
             [
               _c("jet-label", {
-                attrs: { for: "email", value: _vm.__("auth.email") }
+                attrs: { for: "email", value: _vm.__("auth.login.email") }
               }),
               _vm._v(" "),
               _c("jet-input", {
@@ -32428,7 +32592,7 @@ var render = function() {
             { staticClass: "mt-4" },
             [
               _c("jet-label", {
-                attrs: { for: "password", value: "Password" }
+                attrs: { for: "password", value: _vm.__("auth.login.password") }
               }),
               _vm._v(" "),
               _c("jet-input", {
@@ -32468,7 +32632,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("span", { staticClass: "ml-2 text-sm text-gray-600" }, [
-                  _vm._v("Remember me")
+                  _vm._v(_vm._s(_vm.__("auth.login.remember")))
                 ])
               ],
               1
@@ -32489,7 +32653,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                Forgot your password?\n            "
+                        "\n                " +
+                          _vm._s(_vm.__("auth.login.forgot")) +
+                          "\n            "
                       )
                     ]
                   )
@@ -32502,7 +32668,13 @@ var render = function() {
                   class: { "opacity-25": _vm.form.processing },
                   attrs: { disabled: _vm.form.processing }
                 },
-                [_vm._v("\n                Login\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("auth.login.login")) +
+                      "\n            "
+                  )
+                ]
               )
             ],
             1
@@ -32567,7 +32739,9 @@ var render = function() {
           _c(
             "div",
             [
-              _c("jet-label", { attrs: { for: "name", value: "Name" } }),
+              _c("jet-label", {
+                attrs: { for: "name", value: _vm.__("auth.register.username") }
+              }),
               _vm._v(" "),
               _c("jet-input", {
                 staticClass: "mt-1 block w-full",
@@ -32594,7 +32768,9 @@ var render = function() {
             "div",
             { staticClass: "mt-4" },
             [
-              _c("jet-label", { attrs: { for: "email", value: "Email" } }),
+              _c("jet-label", {
+                attrs: { for: "email", value: _vm.__("auth.register.email") }
+              }),
               _vm._v(" "),
               _c("jet-input", {
                 staticClass: "mt-1 block w-full",
@@ -32616,7 +32792,10 @@ var render = function() {
             { staticClass: "mt-4" },
             [
               _c("jet-label", {
-                attrs: { for: "password", value: "Password" }
+                attrs: {
+                  for: "password",
+                  value: _vm.__("auth.register.password")
+                }
               }),
               _vm._v(" "),
               _c("jet-input", {
@@ -32646,7 +32825,7 @@ var render = function() {
               _c("jet-label", {
                 attrs: {
                   for: "password_confirmation",
-                  value: "Confirm Password"
+                  value: _vm.__("auth.register.confirmPassword")
                 }
               }),
               _vm._v(" "),
@@ -32739,7 +32918,13 @@ var render = function() {
                     "underline text-sm text-gray-600 hover:text-gray-900",
                   attrs: { href: _vm.route("login") }
                 },
-                [_vm._v("\n                Already registered?\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("auth.register.already")) +
+                      "\n            "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -32749,7 +32934,13 @@ var render = function() {
                   class: { "opacity-25": _vm.form.processing },
                   attrs: { disabled: _vm.form.processing }
                 },
-                [_vm._v("\n                Register\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("auth.register.register")) +
+                      "\n            "
+                  )
+                ]
               )
             ],
             1
@@ -32814,7 +33005,9 @@ var render = function() {
           _c(
             "div",
             [
-              _c("jet-label", { attrs: { for: "email", value: "Email" } }),
+              _c("jet-label", {
+                attrs: { for: "email", value: _vm.__("auth.reset.email") }
+              }),
               _vm._v(" "),
               _c("jet-input", {
                 staticClass: "mt-1 block w-full",
@@ -32841,7 +33034,7 @@ var render = function() {
             { staticClass: "mt-4" },
             [
               _c("jet-label", {
-                attrs: { for: "password", value: "Password" }
+                attrs: { for: "password", value: _vm.__("auth.reset.password") }
               }),
               _vm._v(" "),
               _c("jet-input", {
@@ -32871,7 +33064,7 @@ var render = function() {
               _c("jet-label", {
                 attrs: {
                   for: "password_confirmation",
-                  value: "Confirm Password"
+                  value: _vm.__("auth.reset.confirmPassword")
                 }
               }),
               _vm._v(" "),
@@ -32905,7 +33098,13 @@ var render = function() {
                   class: { "opacity-25": _vm.form.processing },
                   attrs: { disabled: _vm.form.processing }
                 },
-                [_vm._v("\n                Reset Password\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("auth.reset.rest")) +
+                      "\n            "
+                  )
+                ]
               )
             ],
             1
@@ -32961,12 +33160,16 @@ var render = function() {
           !_vm.recovery
             ? [
                 _vm._v(
-                  "\n            Please confirm access to your account by entering the authentication code provided by your authenticator application.\n        "
+                  "\n            " +
+                    _vm._s(_vm.__("auth.twoFactor.description")) +
+                    "\n        "
                 )
               ]
             : [
                 _vm._v(
-                  "\n            Please confirm access to your account by entering one of your emergency recovery codes.\n        "
+                  "\n            " +
+                    _vm._s(_vm.__("auth.twoFactor.recoveryDescription")) +
+                    "\n        "
                 )
               ]
         ],
@@ -32990,7 +33193,9 @@ var render = function() {
             ? _c(
                 "div",
                 [
-                  _c("jet-label", { attrs: { for: "code", value: "Code" } }),
+                  _c("jet-label", {
+                    attrs: { for: "code", value: _vm.__("auth.twoFactor.code") }
+                  }),
                   _vm._v(" "),
                   _c("jet-input", {
                     ref: "code",
@@ -33017,7 +33222,10 @@ var render = function() {
                 "div",
                 [
                   _c("jet-label", {
-                    attrs: { for: "recovery_code", value: "Recovery Code" }
+                    attrs: {
+                      for: "recovery_code",
+                      value: _vm.__("auth.twoFactor.recoveryCode")
+                    }
                   }),
                   _vm._v(" "),
                   _c("jet-input", {
@@ -33061,12 +33269,16 @@ var render = function() {
                   !_vm.recovery
                     ? [
                         _vm._v(
-                          "\n                    Use a recovery code\n                "
+                          "\n                    " +
+                            _vm._s(_vm.__("auth.twoFactor.codeBtn")) +
+                            "\n                "
                         )
                       ]
                     : [
                         _vm._v(
-                          "\n                    Use an authentication code\n                "
+                          "\n                    " +
+                            _vm._s(_vm.__("auth.twoFactor.recoveryCodeBtn")) +
+                            "\n                "
                         )
                       ]
                 ],
@@ -33080,7 +33292,13 @@ var render = function() {
                   class: { "opacity-25": _vm.form.processing },
                   attrs: { disabled: _vm.form.processing }
                 },
-                [_vm._v("\n                Login\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("auth.twoFactor.login")) +
+                      "\n            "
+                  )
+                ]
               )
             ],
             1
@@ -33131,7 +33349,9 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "mb-4 text-sm text-gray-600" }, [
         _vm._v(
-          "\n        Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.\n    "
+          "\n        " +
+            _vm._s(_vm.__("auth.verify.verifyDescription")) +
+            "\n    "
         )
       ]),
       _vm._v(" "),
@@ -33141,7 +33361,9 @@ var render = function() {
             { staticClass: "mb-4 font-medium text-sm text-green-600" },
             [
               _vm._v(
-                "\n        A new verification link has been sent to the email address you provided during registration.\n    "
+                "\n        " +
+                  _vm._s(_vm.__("auth.verify.verifySent")) +
+                  "\n    "
               )
             ]
           )
@@ -33170,7 +33392,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                Resend Verification Email\n            "
+                    "\n                " +
+                      _vm._s(_vm.__("auth.verify.repeat")) +
+                      "\n            "
                   )
                 ]
               ),
@@ -33186,7 +33410,13 @@ var render = function() {
                     as: "button"
                   }
                 },
-                [_vm._v("Logout")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("auth.verify.logout")) +
+                      "\n            "
+                  )
+                ]
               )
             ],
             1
@@ -33752,14 +33982,24 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Delete Account\n    ")]
+          return [
+            _vm._v(
+              "\n        " + _vm._s(_vm.__("profile.delete.title")) + "\n    "
+            )
+          ]
         },
         proxy: true
       },
       {
         key: "description",
         fn: function() {
-          return [_vm._v("\n        Permanently delete your account.\n    ")]
+          return [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.__("profile.delete.description")) +
+                "\n    "
+            )
+          ]
         },
         proxy: true
       },
@@ -33769,7 +34009,9 @@ var render = function() {
           return [
             _c("div", { staticClass: "max-w-xl text-sm text-gray-600" }, [
               _vm._v(
-                "\n            Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.\n        "
+                "\n            " +
+                  _vm._s(_vm.__("profile.delete.content")) +
+                  "\n        "
               )
             ]),
             _vm._v(" "),
@@ -33786,7 +34028,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Delete Account\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("profile.delete.delete")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ],
               1
@@ -33800,7 +34048,11 @@ var render = function() {
                   key: "title",
                   fn: function() {
                     return [
-                      _vm._v("\n                Delete Account\n            ")
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.__("profile.delete.delete")) +
+                          "\n            "
+                      )
                     ]
                   },
                   proxy: true
@@ -33810,7 +34062,9 @@ var render = function() {
                   fn: function() {
                     return [
                       _vm._v(
-                        "\n                Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.\n\n                "
+                        "\n                " +
+                          _vm._s(_vm.__("profile.delete.confirm")) +
+                          "\n                "
                       ),
                       _c(
                         "div",
@@ -33875,7 +34129,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Nevermind\n                "
+                            "\n                    " +
+                              _vm._s(_vm.__("profile.delete.nevermind")) +
+                              "\n                "
                           )
                         ]
                       ),
@@ -33894,7 +34150,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Delete Account\n                "
+                            "\n                    " +
+                              _vm._s(_vm.__("profile.delete.delete")) +
+                              "\n                "
                           )
                         ]
                       )
@@ -33939,7 +34197,11 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Browser Sessions\n    ")]
+          return [
+            _vm._v(
+              "\n        " + _vm._s(_vm.__("profile.browser.title")) + "\n    "
+            )
+          ]
         },
         proxy: true
       },
@@ -33948,7 +34210,9 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Manage and logout your active sessions on other browsers and devices.\n    "
+              "\n        " +
+                _vm._s(_vm.__("profile.browser.description")) +
+                "\n    "
             )
           ]
         },
@@ -33960,7 +34224,9 @@ var render = function() {
           return [
             _c("div", { staticClass: "max-w-xl text-sm text-gray-600" }, [
               _vm._v(
-                "\n            If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.\n        "
+                "\n            " +
+                  _vm._s(_vm.__("profile.browser.content")) +
+                  "\n        "
               )
             ]),
             _vm._v(" "),
@@ -34062,11 +34328,22 @@ var render = function() {
                                         staticClass:
                                           "text-green-500 font-semibold"
                                       },
-                                      [_vm._v("This device")]
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__(
+                                              "profile.browser.currentDevice"
+                                            )
+                                          )
+                                        )
+                                      ]
                                     )
                                   : _c("span", [
                                       _vm._v(
-                                        "Last active " +
+                                        _vm._s(
+                                          _vm.__("profile.browser.lastActive")
+                                        ) +
+                                          " " +
                                           _vm._s(session.last_active)
                                       )
                                     ])
@@ -34096,7 +34373,9 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                Logout Other Browser Sessions\n            "
+                      "\n                " +
+                        _vm._s(_vm.__("profile.browser.logoutOthers")) +
+                        "\n            "
                     )
                   ]
                 ),
@@ -34107,7 +34386,13 @@ var render = function() {
                     staticClass: "ml-3",
                     attrs: { on: _vm.form.recentlySuccessful }
                   },
-                  [_vm._v("\n                Done.\n            ")]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("profile.browser.done")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ],
               1
@@ -34122,7 +34407,9 @@ var render = function() {
                   fn: function() {
                     return [
                       _vm._v(
-                        "\n                Logout Other Browser Sessions\n            "
+                        "\n                " +
+                          _vm._s(_vm.__("profile.browser.logout.title")) +
+                          "\n            "
                       )
                     ]
                   },
@@ -34133,7 +34420,9 @@ var render = function() {
                   fn: function() {
                     return [
                       _vm._v(
-                        "\n                Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.\n\n                "
+                        "\n                " +
+                          _vm._s(_vm.__("profile.browser.logout.content")) +
+                          "\n                "
                       ),
                       _c(
                         "div",
@@ -34198,7 +34487,11 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Nevermind\n                "
+                            "\n                    " +
+                              _vm._s(
+                                _vm.__("profile.browser.logout.nevermind")
+                              ) +
+                              "\n                "
                           )
                         ]
                       ),
@@ -34217,7 +34510,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Logout Other Browser Sessions\n                "
+                            "\n                    " +
+                              _vm._s(_vm.__("profile.browser.logout.logout")) +
+                              "\n                "
                           )
                         ]
                       )
@@ -34381,7 +34676,13 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Two Factor Authentication\n    ")]
+          return [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.__("profile.twoFactor.title")) +
+                "\n    "
+            )
+          ]
         },
         proxy: true
       },
@@ -34390,7 +34691,9 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Add additional security to your account using two factor authentication.\n    "
+              "\n        " +
+                _vm._s(_vm.__("profile.twoFactor.description")) +
+                "\n    "
             )
           ]
         },
@@ -34403,19 +34706,25 @@ var render = function() {
             _vm.twoFactorEnabled
               ? _c("h3", { staticClass: "text-lg font-medium text-gray-900" }, [
                   _vm._v(
-                    "\n            You have enabled two factor authentication.\n        "
+                    "\n            " +
+                      _vm._s(_vm.__("profile.twoFactor.contentEnable")) +
+                      "\n        "
                   )
                 ])
               : _c("h3", { staticClass: "text-lg font-medium text-gray-900" }, [
                   _vm._v(
-                    "\n            You have not enabled two factor authentication.\n        "
+                    "\n            " +
+                      _vm._s(_vm.__("profile.twoFactor.contentDisable")) +
+                      "\n        "
                   )
                 ]),
             _vm._v(" "),
             _c("div", { staticClass: "mt-3 max-w-xl text-sm text-gray-600" }, [
               _c("p", [
                 _vm._v(
-                  "\n                When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.\n            "
+                  "\n                " +
+                    _vm._s(_vm.__("profile.twoFactor.content")) +
+                    "\n            "
                 )
               ])
             ]),
@@ -34432,7 +34741,11 @@ var render = function() {
                           [
                             _c("p", { staticClass: "font-semibold" }, [
                               _vm._v(
-                                "\n                        Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application.\n                    "
+                                "\n                        " +
+                                  _vm._s(
+                                    _vm.__("profile.twoFactor.contentQR")
+                                  ) +
+                                  "\n                    "
                               )
                             ])
                           ]
@@ -34455,7 +34768,11 @@ var render = function() {
                           [
                             _c("p", { staticClass: "font-semibold" }, [
                               _vm._v(
-                                "\n                        Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.\n                    "
+                                "\n                        " +
+                                  _vm._s(
+                                    _vm.__("profile.twoFactor.contentRecovery")
+                                  ) +
+                                  "\n                    "
                               )
                             ])
                           ]
@@ -34502,7 +34819,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                        Enable\n                    "
+                                "\n                        " +
+                                  _vm._s(_vm.__("profile.twoFactor.enable")) +
+                                  "\n                    "
                               )
                             ]
                           )
@@ -34525,7 +34844,13 @@ var render = function() {
                                 { staticClass: "mr-3" },
                                 [
                                   _vm._v(
-                                    "\n                        Regenerate Recovery Codes\n                    "
+                                    "\n                        " +
+                                      _vm._s(
+                                        _vm.__(
+                                          "profile.twoFactor.regenerateRecovery"
+                                        )
+                                      ) +
+                                      "\n                    "
                                   )
                                 ]
                               )
@@ -34544,7 +34869,11 @@ var render = function() {
                                 { staticClass: "mr-3" },
                                 [
                                   _vm._v(
-                                    "\n                        Show Recovery Codes\n                    "
+                                    "\n                        " +
+                                      _vm._s(
+                                        _vm.__("profile.twoFactor.showRecovery")
+                                      ) +
+                                      "\n                    "
                                   )
                                 ]
                               )
@@ -34567,7 +34896,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                        Disable\n                    "
+                                "\n                        " +
+                                  _vm._s(_vm.__("profile.twoFactor.disable")) +
+                                  "\n                    "
                               )
                             ]
                           )
