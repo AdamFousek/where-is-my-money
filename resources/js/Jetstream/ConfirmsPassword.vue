@@ -6,11 +6,11 @@
 
         <jet-dialog-modal :show="confirmingPassword" @close="closeModal">
             <template #title>
-                {{ cTitle }}
+                {{ title }}
             </template>
 
             <template #content>
-                {{ cContent }}
+                {{ content }}
 
                 <div class="mt-4">
                     <jet-input type="password" class="mt-1 block w-3/4" :placeholder="__('jetstream.password')"
@@ -28,7 +28,7 @@
                 </jet-secondary-button>
 
                 <jet-button class="ml-2" @click.native="confirmPassword" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    {{ cButton }}
+                    {{ button }}
                 </jet-button>
             </template>
         </jet-dialog-modal>
@@ -46,39 +46,15 @@
         props: {
             title: {
                 type: String,
-                default: 'default',
+                default: 'Confirm Password',
             },
             content: {
                 type: String,
-                default: 'default',
+                default: 'For your security, please confirm your password to continue.',
             },
             button: {
                 type: String,
-                default: 'default',
-            }
-        },
-
-        computed: {
-            cTitle() {
-                let title = this.__('jetstream.title');
-                if (this.title === 'default') {
-                    return title;
-                }
-                return this.title;
-            },
-            cContent() {
-                let content = this.__('jetstream.content');
-                if (this.content === 'default') {
-                    return content;
-                }
-                return this.content;
-            },
-            cButton() {
-                let button = this.__('jetstream.button');
-                if (this.button === 'default') {
-                    return button;
-                }
-                return this.button;
+                default: 'Confirm',
             }
         },
 

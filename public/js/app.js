@@ -2229,44 +2229,15 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     title: {
       type: String,
-      "default": 'default'
+      "default": 'Confirm Password'
     },
     content: {
       type: String,
-      "default": 'default'
+      "default": 'For your security, please confirm your password to continue.'
     },
     button: {
       type: String,
-      "default": 'default'
-    }
-  },
-  computed: {
-    cTitle: function cTitle() {
-      var title = this.__('jetstream.title');
-
-      if (this.title === 'default') {
-        return title;
-      }
-
-      return this.title;
-    },
-    cContent: function cContent() {
-      var content = this.__('jetstream.content');
-
-      if (this.content === 'default') {
-        return content;
-      }
-
-      return this.content;
-    },
-    cButton: function cButton() {
-      var button = this.__('jetstream.button');
-
-      if (this.button === 'default') {
-        return button;
-      }
-
-      return this.button;
+      "default": 'Confirm'
     }
   },
   components: {
@@ -4947,6 +4918,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_ConfirmsPassword__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/ConfirmsPassword */ "./resources/js/Jetstream/ConfirmsPassword.vue");
 /* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
 /* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29669,7 +29660,7 @@ var render = function() {
             key: "title",
             fn: function() {
               return [
-                _vm._v("\n            " + _vm._s(_vm.cTitle) + "\n        ")
+                _vm._v("\n            " + _vm._s(_vm.title) + "\n        ")
               ]
             },
             proxy: true
@@ -29679,7 +29670,7 @@ var render = function() {
             fn: function() {
               return [
                 _vm._v(
-                  "\n            " + _vm._s(_vm.cContent) + "\n\n            "
+                  "\n            " + _vm._s(_vm.content) + "\n\n            "
                 ),
                 _c(
                   "div",
@@ -29766,7 +29757,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                " +
-                        _vm._s(_vm.cButton) +
+                        _vm._s(_vm.button) +
                         "\n            "
                     )
                   ]
@@ -34808,6 +34799,17 @@ var render = function() {
                       _c(
                         "jet-confirms-password",
                         {
+                          attrs: {
+                            title: _vm.__(
+                              "profile.twoFactor.confirmPassword.title"
+                            ),
+                            content: _vm.__(
+                              "profile.twoFactor.confirmPassword.content"
+                            ),
+                            button: _vm.__(
+                              "profile.twoFactor.confirmPassword.button"
+                            )
+                          },
                           on: { confirmed: _vm.enableTwoFactorAuthentication }
                         },
                         [
@@ -34836,7 +34838,20 @@ var render = function() {
                     [
                       _c(
                         "jet-confirms-password",
-                        { on: { confirmed: _vm.regenerateRecoveryCodes } },
+                        {
+                          attrs: {
+                            title: _vm.__(
+                              "profile.twoFactor.confirmPassword.title"
+                            ),
+                            content: _vm.__(
+                              "profile.twoFactor.confirmPassword.content"
+                            ),
+                            button: _vm.__(
+                              "profile.twoFactor.confirmPassword.button"
+                            )
+                          },
+                          on: { confirmed: _vm.regenerateRecoveryCodes }
+                        },
                         [
                           _vm.recoveryCodes.length > 0
                             ? _c(
@@ -34861,7 +34876,20 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "jet-confirms-password",
-                        { on: { confirmed: _vm.showRecoveryCodes } },
+                        {
+                          attrs: {
+                            title: _vm.__(
+                              "profile.twoFactor.confirmPassword.title"
+                            ),
+                            content: _vm.__(
+                              "profile.twoFactor.confirmPassword.content"
+                            ),
+                            button: _vm.__(
+                              "profile.twoFactor.confirmPassword.button"
+                            )
+                          },
+                          on: { confirmed: _vm.showRecoveryCodes }
+                        },
                         [
                           _vm.recoveryCodes.length === 0
                             ? _c(
@@ -34885,6 +34913,17 @@ var render = function() {
                       _c(
                         "jet-confirms-password",
                         {
+                          attrs: {
+                            title: _vm.__(
+                              "profile.twoFactor.confirmPassword.title"
+                            ),
+                            content: _vm.__(
+                              "profile.twoFactor.confirmPassword.content"
+                            ),
+                            button: _vm.__(
+                              "profile.twoFactor.confirmPassword.button"
+                            )
+                          },
                           on: { confirmed: _vm.disableTwoFactorAuthentication }
                         },
                         [

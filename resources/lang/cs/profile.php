@@ -76,5 +76,10 @@ return [
         'regenerateRecovery' => 'Obnovení kódů',
         'showRecovery' => 'Zobrazit obnovovací kódy',
         'disable' => 'Deaktivovat',
+        'confirmPassword' => [
+            'title' => 'Potvrzení hesla',
+            'content' => 'Z důvodu vaší bezpečnosti pokračujte potvrzením hesla.',
+            'button' => 'Potvrdit',
+        ],
     ]
 ];

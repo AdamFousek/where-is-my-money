@@ -52,7 +52,12 @@
 
             <div class="mt-5">
                 <div v-if="! twoFactorEnabled">
-                    <jet-confirms-password @confirmed="enableTwoFactorAuthentication">
+                    <jet-confirms-password
+                        @confirmed="enableTwoFactorAuthentication"
+                        :title="__('profile.twoFactor.confirmPassword.title')"
+                        :content="__('profile.twoFactor.confirmPassword.content')"
+                        :button="__('profile.twoFactor.confirmPassword.button')"
+                    >
                         <jet-button type="button" :class="{ 'opacity-25': enabling }" :disabled="enabling">
                             {{ __('profile.twoFactor.enable') }}
                         </jet-button>
@@ -60,20 +65,35 @@
                 </div>
 
                 <div v-else>
-                    <jet-confirms-password @confirmed="regenerateRecoveryCodes">
+                    <jet-confirms-password
+                        @confirmed="regenerateRecoveryCodes"
+                        :title="__('profile.twoFactor.confirmPassword.title')"
+                        :content="__('profile.twoFactor.confirmPassword.content')"
+                        :button="__('profile.twoFactor.confirmPassword.button')"
+                    >
                         <jet-secondary-button class="mr-3"
                                         v-if="recoveryCodes.length > 0">
                             {{ __('profile.twoFactor.regenerateRecovery') }}
                         </jet-secondary-button>
                     </jet-confirms-password>
 
-                    <jet-confirms-password @confirmed="showRecoveryCodes">
+                    <jet-confirms-password
+                        @confirmed="showRecoveryCodes"
+                        :title="__('profile.twoFactor.confirmPassword.title')"
+                        :content="__('profile.twoFactor.confirmPassword.content')"
+                        :button="__('profile.twoFactor.confirmPassword.button')"
+                    >
                         <jet-secondary-button class="mr-3" v-if="recoveryCodes.length === 0">
                             {{ __('profile.twoFactor.showRecovery') }}
                         </jet-secondary-button>
                     </jet-confirms-password>
 
-                    <jet-confirms-password @confirmed="disableTwoFactorAuthentication">
+                    <jet-confirms-password
+                        @confirmed="disableTwoFactorAuthentication"
+                        :title="__('profile.twoFactor.confirmPassword.title')"
+                        :content="__('profile.twoFactor.confirmPassword.content')"
+                        :button="__('profile.twoFactor.confirmPassword.button')"
+                    >
                         <jet-danger-button
                                         :class="{ 'opacity-25': disabling }"
                                         :disabled="disabling">
