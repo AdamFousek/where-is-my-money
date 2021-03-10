@@ -3,24 +3,24 @@
         <!-- Generate API Token -->
         <jet-form-section @submitted="createApiToken">
             <template #title>
-                Create API Token
+                {{ __('tokens.manager.create.title') }}
             </template>
 
             <template #description>
-                API tokens allow third-party services to authenticate with our application on your behalf.
+                {{ __('tokens.manager.create.description') }}
             </template>
 
             <template #form>
                 <!-- Token Name -->
                 <div class="col-span-6 sm:col-span-4">
-                    <jet-label for="name" value="Name" />
+                    <jet-label for="name" :value="__('tokens.manager.input.name')" />
                     <jet-input id="name" type="text" class="mt-1 block w-full" v-model="createApiTokenForm.name" autofocus />
                     <jet-input-error :message="createApiTokenForm.errors.name" class="mt-2" />
                 </div>
 
                 <!-- Token Permissions -->
                 <div class="col-span-6" v-if="availablePermissions.length > 0">
-                    <jet-label for="permissions" value="Permissions" />
+                    <jet-label for="permissions" :value="__('tokens.manager.input.permissions')" />
 
                     <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div v-for="permission in availablePermissions" :key="permission">
@@ -35,11 +35,11 @@
 
             <template #actions>
                 <jet-action-message :on="createApiTokenForm.recentlySuccessful" class="mr-3">
-                    Created.
+                    {{ __('tokens.created') }}
                 </jet-action-message>
 
                 <jet-button :class="{ 'opacity-25': createApiTokenForm.processing }" :disabled="createApiTokenForm.processing">
-                    Create
+                    {{ __('tokens.create') }}
                 </jet-button>
             </template>
         </jet-form-section>
@@ -51,11 +51,11 @@
             <div class="mt-10 sm:mt-0">
                 <jet-action-section>
                     <template #title>
-                        Manage API Tokens
+                        {{ __('tokens.manager.edit.title') }}
                     </template>
 
                     <template #description>
-                        You may delete any of your existing tokens if they are no longer needed.
+                        {{ __('tokens.manager.edit.description') }}
                     </template>
 
                     <!-- API Token List -->
@@ -68,18 +68,18 @@
 
                                 <div class="flex items-center">
                                     <div class="text-sm text-gray-400" v-if="token.last_used_ago">
-                                        Last used {{ token.last_used_ago }}
+                                        {{ __('tokens.manager.edit.lastUsed') }} {{ token.last_used_ago }}
                                     </div>
 
                                     <button class="cursor-pointer ml-6 text-sm text-gray-400 underline"
                                         @click="manageApiTokenPermissions(token)"
                                         v-if="availablePermissions.length > 0"
                                     >
-                                        Permissions
+                                        {{ __('tokens.manager.edit.permission') }}
                                     </button>
 
                                     <button class="cursor-pointer ml-6 text-sm text-red-500" @click="confirmApiTokenDeletion(token)">
-                                        Delete
+                                        {{ __('tokens.manager.edit.delete') }}
                                     </button>
                                 </div>
                             </div>
@@ -92,12 +92,12 @@
         <!-- Token Value Modal -->
         <jet-dialog-modal :show="displayingToken" @close="displayingToken = false">
             <template #title>
-                API Token
+                {{ __('tokens.manager.show.title') }}
             </template>
 
             <template #content>
                 <div>
-                    Please copy your new API token. For your security, it won't be shown again.
+                    {{ __('tokens.manager.show.description') }}
                 </div>
 
                 <div class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500" v-if="$page.props.jetstream.flash.token">
@@ -107,7 +107,7 @@
 
             <template #footer>
                 <jet-secondary-button @click.native="displayingToken = false">
-                    Close
+                    {{ __('tokens.manager.show.close') }}
                 </jet-secondary-button>
             </template>
         </jet-dialog-modal>
@@ -115,7 +115,7 @@
         <!-- API Token Permissions Modal -->
         <jet-dialog-modal :show="managingPermissionsFor" @close="managingPermissionsFor = null">
             <template #title>
-                API Token Permissions
+                {{ __('tokens.manager.permissions.title') }}
             </template>
 
             <template #content>
@@ -131,11 +131,11 @@
 
             <template #footer>
                 <jet-secondary-button @click.native="managingPermissionsFor = null">
-                    Nevermind
+                    {{ __('tokens.manager.permissions.nevermind') }}
                 </jet-secondary-button>
 
                 <jet-button class="ml-2" @click.native="updateApiToken" :class="{ 'opacity-25': updateApiTokenForm.processing }" :disabled="updateApiTokenForm.processing">
-                    Save
+                    {{ __('tokens.manager.permissions.save') }}
                 </jet-button>
             </template>
         </jet-dialog-modal>
@@ -143,20 +143,20 @@
         <!-- Delete Token Confirmation Modal -->
         <jet-confirmation-modal :show="apiTokenBeingDeleted" @close="apiTokenBeingDeleted = null">
             <template #title>
-                Delete API Token
+                {{ __('tokens.manager.delete.title') }}
             </template>
 
             <template #content>
-                Are you sure you would like to delete this API token?
+                {{ __('tokens.manager.delete.description') }}
             </template>
 
             <template #footer>
                 <jet-secondary-button @click.native="apiTokenBeingDeleted = null">
-                    Nevermind
+                    {{ __('tokens.manager.delete.nevermind') }}
                 </jet-secondary-button>
 
                 <jet-danger-button class="ml-2" @click.native="deleteApiToken" :class="{ 'opacity-25': deleteApiTokenForm.processing }" :disabled="deleteApiTokenForm.processing">
-                    Delete
+                    {{ __('tokens.manager.delete.delete') }}
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>

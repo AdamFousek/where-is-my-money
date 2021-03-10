@@ -1,7 +1,28 @@
 <?php
 
 return [
-    'Show group' => 'Zobrazit skupinu',
-    'Create group' => 'Vytvořit skupinu',
-    'Number of users:' => 'Počet uživatelů:',
+    'title' => 'Vaše skupiny',
+    'back' => 'Zpět na skupiny',
+
+    'card' => [
+        'numberOfUsers' => 'Počer uživatelů'
+    ],
+
+    'buttons' => [
+        'create' => 'Vytvořit skupinu',
+    ],
+
+    'create' => [
+        'title' => 'Vytvořit skupinu',
+        'input' => [
+            'name' => 'Název skupiny',
+        ],
+        'button' => [
+            'create' => 'Vytvořit',
+        ],
+    ],
+
+    'show' => [
+        'payments' => 'Platby:',
+    ],
 ];

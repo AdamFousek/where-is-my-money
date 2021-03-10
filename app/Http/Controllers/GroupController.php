@@ -20,12 +20,11 @@ class GroupController extends Controller
     {
         $user = Auth::user();
         $groups = $user->groups()
-            ->orderBy('is_favorite','desc')
+            ->orderBy('is_favorite', 'desc')
             ->get();
 
         return Inertia::render('Groups/Index', [
             'groups' => $groups,
-            'trans' => Lang::get('groups')
         ]);
     }
 
@@ -106,13 +105,18 @@ class GroupController extends Controller
      *
      * @param Group $group
      * @return RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Group $group)
     {
         if ($group->trashed()) {
             $group->forceDelete();
         } else {
-            $group->delete();
+            try {
+                $group->delete();
+            } catch (\Exception $e) {
+                // @todo create messages
+            }
         }
 
         return back();
