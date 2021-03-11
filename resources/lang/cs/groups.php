@@ -6,7 +6,13 @@ return [
     'back' => 'Zpět na skupiny',
 
     'card' => [
-        'numberOfUsers' => 'Počer uživatelů'
+        'numberOfUsers' => 'Počer uživatelů',
+        'numberOfPayments' => 'Počer plateb',
+        'createdBy' => 'Skupinu vytvořil',
+        'status' => 'Váš stav',
+        'lastPayment' => 'Poslední platba',
+        'lastPaymentWho' => 'Poslední platbu přidal',
+        'showMore' => 'Zobrazit skupinu',
     ],
 
     'buttons' => [

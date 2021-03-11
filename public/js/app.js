@@ -1915,7 +1915,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ['href', 'color'],
   computed: {
     classes: function classes() {
-      console.log(this.color);
       var classes = '';
 
       switch (this.color) {
@@ -1924,7 +1923,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         default:
-          classes = 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
+          classes = 'inline-flex items-center px-1 pt-1 text-green-800 hover:text-green-600 focus:outline-none focus:text-gray-700 transition duration-150 ease-in-out';
       }
 
       return classes;
@@ -4416,6 +4415,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Link/BasicLink */ "./resources/js/Components/Link/BasicLink.vue");
+/* harmony import */ var _Pages_Groups_components_GroupCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Groups/components/GroupCard */ "./resources/js/Pages/Groups/components/GroupCard.vue");
 //
 //
 //
@@ -4444,17 +4444,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4463,7 +4453,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
-    BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_1__.default
+    BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_1__.default,
+    GroupCard: _Pages_Groups_components_GroupCard__WEBPACK_IMPORTED_MODULE_2__.default
   }
 });
 
@@ -4533,6 +4524,102 @@ __webpack_require__.r(__webpack_exports__);
         onError: function onError() {}
       });
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Link/BasicLink */ "./resources/js/Components/Link/BasicLink.vue");
+/* harmony import */ var _Pages_Groups_components_GroupCardInfoBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Groups/components/GroupCardInfoBlock */ "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    group: Object
+  },
+  components: {
+    BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_0__.default,
+    GroupCardInfoBlock: _Pages_Groups_components_GroupCardInfoBlock__WEBPACK_IMPORTED_MODULE_1__.default
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    title: String,
+    data: String
   }
 });
 
@@ -26789,6 +26876,84 @@ component.options.__file = "resources/js/Pages/Groups/Show.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Groups/components/GroupCard.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/Pages/Groups/components/GroupCard.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _GroupCard_vue_vue_type_template_id_7a541218___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GroupCard.vue?vue&type=template&id=7a541218& */ "./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=template&id=7a541218&");
+/* harmony import */ var _GroupCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GroupCard.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _GroupCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _GroupCard_vue_vue_type_template_id_7a541218___WEBPACK_IMPORTED_MODULE_0__.render,
+  _GroupCard_vue_vue_type_template_id_7a541218___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Groups/components/GroupCard.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _GroupCardInfoBlock_vue_vue_type_template_id_5c20c7f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7& */ "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7&");
+/* harmony import */ var _GroupCardInfoBlock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GroupCardInfoBlock.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _GroupCardInfoBlock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _GroupCardInfoBlock_vue_vue_type_template_id_5c20c7f7___WEBPACK_IMPORTED_MODULE_0__.render,
+  _GroupCardInfoBlock_vue_vue_type_template_id_5c20c7f7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Groups/components/GroupCardInfoBlock.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/PrivacyPolicy.vue":
 /*!**********************************************!*\
   !*** ./resources/js/Pages/PrivacyPolicy.vue ***!
@@ -27750,6 +27915,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GroupCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCardInfoBlock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GroupCardInfoBlock.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCardInfoBlock_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/PrivacyPolicy.vue?vue&type=script&lang=js&":
 /*!***********************************************************************!*\
   !*** ./resources/js/Pages/PrivacyPolicy.vue?vue&type=script&lang=js& ***!
@@ -28651,6 +28848,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_0254b142_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_0254b142_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Show.vue?vue&type=template&id=0254b142&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/Show.vue?vue&type=template&id=0254b142&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=template&id=7a541218&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=template&id=7a541218& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCard_vue_vue_type_template_id_7a541218___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCard_vue_vue_type_template_id_7a541218___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCard_vue_vue_type_template_id_7a541218___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GroupCard.vue?vue&type=template&id=7a541218& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=template&id=7a541218&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCardInfoBlock_vue_vue_type_template_id_5c20c7f7___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCardInfoBlock_vue_vue_type_template_id_5c20c7f7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupCardInfoBlock_vue_vue_type_template_id_5c20c7f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7&");
 
 
 /***/ }),
@@ -33845,92 +34076,37 @@ var render = function() {
     },
     [
       _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" }, [
         _c(
           "div",
-          { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" },
+          { staticClass: "flex justify-end my-4 px-2 sm:px-0" },
           [
             _c(
-              "div",
-              { staticClass: "flex justify-end my-4 px-2 sm:px-0" },
+              "inertia-link",
+              {
+                staticClass:
+                  "inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:shadow-outline-green transition ease-in-out duration-150",
+                attrs: { href: _vm.route("group.create") }
+              },
               [
-                _c(
-                  "inertia-link",
-                  {
-                    staticClass:
-                      "inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:shadow-outline-green transition ease-in-out duration-150",
-                    attrs: { href: _vm.route("group.create") }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.__("groups.buttons.create")) +
-                        "\n                "
-                    )
-                  ]
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.__("groups.buttons.create")) +
+                    "\n            "
                 )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._l(_vm.groups, function(group) {
-              return _c(
-                "div",
-                {
-                  key: group.id,
-                  staticClass:
-                    "bg-white mb-8 p-4 overflow-hidden shadow-xl sm:rounded-lg"
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "flex flex-wrap justify-between items-center"
-                    },
-                    [
-                      _c(
-                        "h2",
-                        { staticClass: "text-xl my-4" },
-                        [
-                          group.pivot.is_favorite
-                            ? _c("span", [
-                                _c("i", {
-                                  staticClass: "fas fa-star text-yellow-400"
-                                })
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c(
-                            "basic-link",
-                            {
-                              attrs: {
-                                href: _vm.route("group.show", group),
-                                color: "green"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(group.name) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(_vm._s(_vm.__("groups.card.numberOfUsers")) + " "),
-                    _c("span", [_vm._v("0")])
-                  ])
-                ]
-              )
-            })
+              ]
+            )
           ],
-          2
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "flex justify-around flex-wrap" },
+          _vm._l(_vm.groups, function(group) {
+            return _c("group-card", { key: group.id, attrs: { group: group } })
+          }),
+          1
         )
       ])
     ]
@@ -34061,6 +34237,166 @@ var render = function() {
             ]
           )
         ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=template&id=7a541218&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCard.vue?vue&type=template&id=7a541218& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "bg-white mb-4 md:mb-8 p-4 overflow-hidden shadow-xl sm:rounded-lg w-full lg:w-96 md:w-5/12"
+    },
+    [
+      _c(
+        "h2",
+        {
+          staticClass:
+            "flex flex-wrap items-center text-xl my-2 py-2 border-b border-gray-400"
+        },
+        [
+          _vm.group.pivot.is_favorite
+            ? _c(
+                "span",
+                { staticClass: "border-b-2 border-transparent mr-2" },
+                [_c("i", { staticClass: "fas fa-star text-yellow-400" })]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "basic-link",
+            {
+              attrs: {
+                href: _vm.route("group.show", _vm.group),
+                color: "green"
+              }
+            },
+            [_vm._v("\n            " + _vm._s(_vm.group.name) + "\n        ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "w-full flex justify-between flex-wrap text-2xl my-4" },
+        [
+          _c("div", { staticClass: "w-1/2" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.__("groups.card.status")) +
+                ":\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-1/2 text-green-400" }, [
+            _vm._v("\n            + 1000\n        ")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("group-card-info-block", {
+        attrs: {
+          title: _vm.__("groups.card.lastPayment"),
+          data: "23.3.2021 9:45"
+        }
+      }),
+      _vm._v(" "),
+      _c("group-card-info-block", {
+        staticClass: "mb-2",
+        attrs: { title: _vm.__("groups.card.lastPaymentWho"), data: "UserName" }
+      }),
+      _vm._v(" "),
+      _c("group-card-info-block", {
+        attrs: { title: _vm.__("groups.card.createdBy"), data: "UserName" }
+      }),
+      _vm._v(" "),
+      _c("group-card-info-block", {
+        attrs: { title: _vm.__("groups.card.numberOfUsers"), data: "0" }
+      }),
+      _vm._v(" "),
+      _c("group-card-info-block", {
+        attrs: { title: _vm.__("groups.card.numberOfPayments"), data: "0" }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex justify-end flex-wrap text-sm" },
+        [
+          _c(
+            "basic-link",
+            { attrs: { href: _vm.route("group.show", _vm.group) } },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.__("groups.card.showMore")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue?vue&type=template&id=5c20c7f7& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "w-full flex justify-between flex-wrap text-xs" },
+    [
+      _c("div", { staticClass: "w-1/2 text-gray-700 mb-2" }, [
+        _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-1/2 text-black mb-2" }, [
+        _vm._v("\n        " + _vm._s(_vm.data) + "\n    ")
       ])
     ]
   )
@@ -47891,6 +48227,10 @@ var map = {
 	"./Groups/Index.vue": "./resources/js/Pages/Groups/Index.vue",
 	"./Groups/Show": "./resources/js/Pages/Groups/Show.vue",
 	"./Groups/Show.vue": "./resources/js/Pages/Groups/Show.vue",
+	"./Groups/components/GroupCard": "./resources/js/Pages/Groups/components/GroupCard.vue",
+	"./Groups/components/GroupCard.vue": "./resources/js/Pages/Groups/components/GroupCard.vue",
+	"./Groups/components/GroupCardInfoBlock": "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue",
+	"./Groups/components/GroupCardInfoBlock.vue": "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue",
 	"./PrivacyPolicy": "./resources/js/Pages/PrivacyPolicy.vue",
 	"./PrivacyPolicy.vue": "./resources/js/Pages/PrivacyPolicy.vue",
 	"./Profile/DeleteUserForm": "./resources/js/Pages/Profile/DeleteUserForm.vue",
