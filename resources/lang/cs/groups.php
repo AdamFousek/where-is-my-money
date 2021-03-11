@@ -4,6 +4,7 @@ return [
     'title' => 'Vaše skupiny',
     'favorite' => 'Oblibéné skupiny',
     'back' => 'Zpět na skupiny',
+    'search' => 'Vyhledat...',
 
     'card' => [
         'numberOfUsers' => 'Počer uživatelů',

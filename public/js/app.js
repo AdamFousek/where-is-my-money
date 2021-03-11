@@ -4416,6 +4416,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Link/BasicLink */ "./resources/js/Components/Link/BasicLink.vue");
 /* harmony import */ var _Pages_Groups_components_GroupCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Groups/components/GroupCard */ "./resources/js/Pages/Groups/components/GroupCard.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 //
 //
 //
@@ -4444,6 +4445,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -4452,9 +4457,25 @@ __webpack_require__.r(__webpack_exports__);
     groups: Array
   },
   components: {
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__.default,
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
     BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_1__.default,
     GroupCard: _Pages_Groups_components_GroupCard__WEBPACK_IMPORTED_MODULE_2__.default
+  },
+  data: function data() {
+    return {
+      search: '',
+      resultGroups: []
+    };
+  },
+  computed: {
+    filteredGroups: function filteredGroups() {
+      var search = this.search.toLowerCase().trim();
+      if (!search) return this.groups;
+      return this.groups.filter(function (g) {
+        return g.name.toLowerCase().indexOf(search) > -1;
+      });
+    }
   }
 });
 
@@ -34079,8 +34100,31 @@ var render = function() {
       _c("div", { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" }, [
         _c(
           "div",
-          { staticClass: "flex justify-end my-4 px-2 sm:px-0" },
+          { staticClass: "flex flex-wrap justify-between my-4 px-2 sm:px-0" },
           [
+            _c(
+              "div",
+              { staticClass: "w-1/2" },
+              [
+                _c("jet-input", {
+                  staticClass: "mt-1 block w-full",
+                  attrs: {
+                    id: "group-name",
+                    type: "text",
+                    placeholder: _vm.__("groups.search")
+                  },
+                  model: {
+                    value: _vm.search,
+                    callback: function($$v) {
+                      _vm.search = $$v
+                    },
+                    expression: "search"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
             _c(
               "inertia-link",
               {
@@ -34102,8 +34146,8 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "flex justify-around flex-wrap" },
-          _vm._l(_vm.groups, function(group) {
+          { staticClass: "flex justify-between flex-wrap" },
+          _vm._l(_vm.filteredGroups, function(group) {
             return _c("group-card", { key: group.id, attrs: { group: group } })
           }),
           1
