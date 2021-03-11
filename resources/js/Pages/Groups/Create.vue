@@ -17,7 +17,7 @@
         <div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white my-8 overflow-hidden shadow-xl sm:rounded-lg">
-                    <component-form @submitted="createGroup">
+                    <the-form @submitted="createGroup">
                         <template #form>
                             <div class="col-span-6 sm:col-span-4">
                                 <jet-label for="name" :value="__('groups.create.input.name')" />
@@ -31,7 +31,7 @@
                                 {{ __('groups.create.button.create') }}
                             </jet-button>
                         </template>
-                    </component-form>
+                    </the-form>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
 import AppLayout from '@/Layouts/AppLayout'
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
-import ComponentForm from "@/Components/Form/Form";
+import TheForm from "@/Components/Form/TheForm";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
@@ -52,7 +52,7 @@ export default {
         AppLayout,
         JetActionMessage,
         JetButton,
-        ComponentForm,
+        TheForm,
         JetInput,
         JetInputError,
         JetLabel,

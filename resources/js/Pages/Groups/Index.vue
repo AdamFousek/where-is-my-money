@@ -1,8 +1,8 @@
 <template>
     <app-layout>
         <template #header>
-            <div class="flex justify-between items-center">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <div class="flex justify-start items-center">
+                <h2 class="font-semibold text-xl text-gray-800">
                     {{ __('groups.title') }}
                 </h2>
             </div>
@@ -25,7 +25,9 @@
                             <span v-if="group.pivot.is_favorite">
                                 <i class="fas fa-star text-yellow-400"></i>
                             </span>
-                            {{ group.name }}
+                            <basic-link :href="route('group.show', group)" :color="'green'">
+                                {{ group.name }}
+                            </basic-link>
                         </h2>
                     </div>
                     <p>{{ __('groups.card.numberOfUsers') }} <span>0</span></p>
@@ -37,6 +39,7 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import BasicLink from "@/Components/Link/BasicLink";
 
 export default {
     props: {
@@ -44,6 +47,7 @@ export default {
     },
     components: {
         AppLayout,
+        BasicLink,
     },
 }
 </script>

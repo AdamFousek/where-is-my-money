@@ -2,6 +2,7 @@
 
 return [
     'title' => 'Vaše skupiny',
+    'favorite' => 'Oblibéné skupiny',
     'back' => 'Zpět na skupiny',
 
     'card' => [
