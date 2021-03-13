@@ -14,6 +14,7 @@ return [
         'lastPayment' => 'Poslední platba',
         'lastPaymentWho' => 'Poslední platbu přidal',
         'showMore' => 'Zobrazit skupinu',
+        'created' => 'Vytvořeno',
     ],
 
     'buttons' => [

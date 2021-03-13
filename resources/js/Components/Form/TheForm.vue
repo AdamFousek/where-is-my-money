@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md" v-if="hasActions">
+        <div v-if="hasActions" :class="classes">
             <slot name="actions"></slot>
         </div>
     </form>
@@ -15,9 +15,19 @@
 
 <script>
 export default {
+    props: {
+        actions: String,
+    },
     computed: {
         hasActions() {
             return !! this.$slots.actions
+        },
+        classes() {
+            if (this.actions) {
+                return this.actions;
+            } else {
+                return 'flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md';
+            }
         }
     }
 }

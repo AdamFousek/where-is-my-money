@@ -1885,9 +1885,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    actions: String
+  },
   computed: {
     hasActions: function hasActions() {
       return !!this.$slots.actions;
+    },
+    classes: function classes() {
+      if (this.actions) {
+        return this.actions;
+      } else {
+        return 'flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md';
+      }
     }
   }
 });
@@ -4313,6 +4323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Link/BasicLink */ "./resources/js/Components/Link/BasicLink.vue");
 //
 //
 //
@@ -4350,9 +4361,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
+
 
 
 
@@ -4369,7 +4378,8 @@ __webpack_require__.r(__webpack_exports__);
     TheForm: _Components_Form_TheForm__WEBPACK_IMPORTED_MODULE_3__.default,
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_4__.default,
     JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_5__.default,
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_6__.default
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_6__.default,
+    BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_7__.default
   },
   data: function data() {
     return {
@@ -4601,6 +4611,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4610,6 +4622,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_0__.default,
     GroupCardInfoBlock: _Pages_Groups_components_GroupCardInfoBlock__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  computed: {
+    createdAt: function createdAt() {
+      console.log(Date.parse(this.group.created_at));
+    }
   }
 });
 
@@ -5388,6 +5405,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
 /* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
 /* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+/* harmony import */ var _Jetstream_Checkbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/Checkbox */ "./resources/js/Jetstream/Checkbox.vue");
 //
 //
 //
@@ -5458,6 +5476,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -5473,7 +5517,8 @@ __webpack_require__.r(__webpack_exports__);
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_2__.default,
     JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_3__.default,
     JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__.default,
-    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__.default
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__.default,
+    JetCheckbox: _Jetstream_Checkbox__WEBPACK_IMPORTED_MODULE_7__.default
   },
   props: ['user'],
   data: function data() {
@@ -5481,6 +5526,9 @@ __webpack_require__.r(__webpack_exports__);
       form: this.$inertia.form({
         _method: 'PUT',
         name: this.user.name,
+        first_name: this.user.first_name !== null ? this.user.first_name : '',
+        last_name: this.user.last_name !== null ? this.user.last_name : '',
+        show_real_name: !!this.user.show_real_name,
         email: this.user.email,
         photo: null
       }),
@@ -29106,15 +29154,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm.hasActions
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md"
-            },
-            [_vm._t("actions")],
-            2
-          )
+        ? _c("div", { class: _vm.classes }, [_vm._t("actions")], 2)
         : _vm._e()
     ]
   )
@@ -33913,43 +33953,22 @@ var render = function() {
           key: "header",
           fn: function() {
             return [
-              _c(
-                "div",
-                { staticClass: "flex justify-between items-center" },
-                [
-                  _c(
-                    "h2",
-                    {
-                      staticClass:
-                        "font-semibold text-xl text-gray-800 leading-tight"
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.__("groups.create.title")) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "inertia-link",
-                    {
-                      staticClass:
-                        "inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150",
-                      attrs: { href: _vm.route("group.index") }
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.__("groups.back")) +
-                          "\n            "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
+              _c("div", { staticClass: "flex justify-between items-center" }, [
+                _c(
+                  "h2",
+                  {
+                    staticClass:
+                      "font-semibold text-xl text-gray-800 leading-tight"
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.__("groups.create.title")) +
+                        "\n            "
+                    )
+                  ]
+                )
+              ])
             ]
           },
           proxy: true
@@ -33968,6 +33987,10 @@ var render = function() {
             },
             [
               _c("the-form", {
+                attrs: {
+                  actions:
+                    "flex items-center justify-between px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md"
+                },
                 on: { submitted: _vm.createGroup },
                 scopedSlots: _vm._u([
                   {
@@ -34017,6 +34040,23 @@ var render = function() {
                     key: "actions",
                     fn: function() {
                       return [
+                        _c(
+                          "basic-link",
+                          {
+                            attrs: {
+                              color: _vm.green,
+                              href: _vm.route("group.index")
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.__("groups.back")) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
                         _c(
                           "jet-button",
                           {
@@ -34100,7 +34140,10 @@ var render = function() {
       _c("div", { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" }, [
         _c(
           "div",
-          { staticClass: "flex flex-wrap justify-between my-4 px-2 sm:px-0" },
+          {
+            staticClass:
+              "flex flex-wrap items-center justify-between my-4 px-2 sm:px-0"
+          },
           [
             _c(
               "div",
@@ -34363,6 +34406,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("group-card-info-block", {
+        attrs: { title: _vm.__("groups.card.lastPaymentWho"), data: "UserName" }
+      }),
+      _vm._v(" "),
+      _c("group-card-info-block", {
+        staticClass: "mb-2",
         attrs: {
           title: _vm.__("groups.card.lastPayment"),
           data: "23.3.2021 9:45"
@@ -34370,12 +34418,11 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
-        staticClass: "mb-2",
-        attrs: { title: _vm.__("groups.card.lastPaymentWho"), data: "UserName" }
+        attrs: { title: _vm.__("groups.card.createdBy"), data: "UserName" }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
-        attrs: { title: _vm.__("groups.card.createdBy"), data: "UserName" }
+        attrs: { title: _vm.__("groups.card.created"), data: _vm.createdAt }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
@@ -35911,7 +35958,80 @@ var render = function() {
               { staticClass: "col-span-6 sm:col-span-4" },
               [
                 _c("jet-label", {
-                  attrs: { for: "email", value: _vm.__("profile.email.title") }
+                  attrs: {
+                    for: "firstName",
+                    value: _vm.__("profile.firstName.title")
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-input", {
+                  staticClass: "mt-1 block w-full",
+                  attrs: {
+                    id: "firstName",
+                    type: "text",
+                    autocomplete: "firstName"
+                  },
+                  model: {
+                    value: _vm.form.first_name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "first_name", $$v)
+                    },
+                    expression: "form.first_name"
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-input-error", {
+                  staticClass: "mt-2",
+                  attrs: { message: _vm.form.errors.first_name }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-span-6 sm:col-span-4" },
+              [
+                _c("jet-label", {
+                  attrs: {
+                    for: "lastName",
+                    value: _vm.__("profile.lastName.title")
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-input", {
+                  staticClass: "mt-1 block w-full",
+                  attrs: {
+                    id: "lastName",
+                    type: "text",
+                    autocomplete: "lastName"
+                  },
+                  model: {
+                    value: _vm.form.last_name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "last_name", $$v)
+                    },
+                    expression: "form.last_name"
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-input-error", {
+                  staticClass: "mt-2",
+                  attrs: { message: _vm.form.errors.last_name }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-span-6 sm:col-span-4" },
+              [
+                _c("jet-label", {
+                  attrs: {
+                    for: "showUsername",
+                    value: _vm.__("profile.email.title")
+                  }
                 }),
                 _vm._v(" "),
                 _c("jet-input", {
@@ -35929,6 +36049,40 @@ var render = function() {
                 _c("jet-input-error", {
                   staticClass: "mt-2",
                   attrs: { message: _vm.form.errors.email }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-span-6 sm:col-span-4" },
+              [
+                _c("jet-checkbox", {
+                  attrs: {
+                    id: "showUsername",
+                    checked: _vm.form.show_real_name,
+                    value: _vm.__("profile.shoRealName.title")
+                  },
+                  model: {
+                    value: _vm.form.show_real_name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "show_real_name", $$v)
+                    },
+                    expression: "form.show_real_name"
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-label", {
+                  attrs: {
+                    for: "showUsername",
+                    value: _vm.__("profile.shoRealName.title")
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-input-error", {
+                  staticClass: "mt-2",
+                  attrs: { message: _vm.form.errors.show_real_name }
                 })
               ],
               1

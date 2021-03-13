@@ -17,13 +17,15 @@
             </div>
         </div>
 
-        <group-card-info-block :title="__('groups.card.lastPayment')"
-                               :data="'23.3.2021 9:45'"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.lastPaymentWho')"
-                               :data="'UserName'"
-                                class="mb-2"></group-card-info-block>
+                               :data="'UserName'"></group-card-info-block>
+        <group-card-info-block :title="__('groups.card.lastPayment')"
+                               :data="'23.3.2021 9:45'"
+                               class="mb-2"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.createdBy')"
                                :data="'UserName'"></group-card-info-block>
+        <group-card-info-block :title="__('groups.card.created')"
+                               :data="createdAt"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfUsers')"
                                :data="'0'"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfPayments')"
@@ -48,5 +50,10 @@ export default {
         BasicLink,
         GroupCardInfoBlock,
     },
+    computed: {
+        createdAt() {
+            console.log(Date.parse(this.group.created_at));
+        }
+    }
 }
 </script>

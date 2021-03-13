@@ -9,7 +9,7 @@
         </template>
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex flex-wrap justify-between my-4 px-2 sm:px-0">
+            <div class="flex flex-wrap items-center justify-between my-4 px-2 sm:px-0">
                 <div class="w-1/2">
                     <jet-input id="group-name" type="text" class="mt-1 block w-full" v-model="search" :placeholder="__('groups.search')" />
                 </div>

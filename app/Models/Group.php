@@ -55,7 +55,7 @@ class Group extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function createdUser()
     {
         return $this->belongsTo(User::class);
     }

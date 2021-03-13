@@ -5,19 +5,13 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('groups.create.title') }}
                 </h2>
-                <inertia-link
-                    :href="route('group.index')"
-                    class="inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150"
-                >
-                    {{ __('groups.back') }}
-                </inertia-link>
             </div>
         </template>
 
         <div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white my-8 overflow-hidden shadow-xl sm:rounded-lg">
-                    <the-form @submitted="createGroup">
+                    <the-form @submitted="createGroup" :actions="'flex items-center justify-between px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md'">
                         <template #form>
                             <div class="col-span-6 sm:col-span-4">
                                 <jet-label for="name" :value="__('groups.create.input.name')" />
@@ -27,6 +21,9 @@
                         </template>
 
                         <template #actions>
+                            <basic-link :color="green" :href="route('group.index')">
+                                {{ __('groups.back') }}
+                            </basic-link>
                             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                 {{ __('groups.create.button.create') }}
                             </jet-button>
@@ -46,6 +43,7 @@ import TheForm from "@/Components/Form/TheForm";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
+import BasicLink from "@/Components/Link/BasicLink";
 export default {
     name: "Create.vue",
     components: {
@@ -56,6 +54,7 @@ export default {
         JetInput,
         JetInputError,
         JetLabel,
+        BasicLink,
     },
     data() {
         return {
