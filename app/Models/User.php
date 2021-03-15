@@ -25,6 +25,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'first_name',
+        'last_name',
+        'show_real_name',
         'email',
         'password',
     ];
@@ -48,6 +51,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'show_real_name' => 'boolean',
     ];
 
     /**
@@ -57,7 +61,22 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'display_name'
     ];
+
+    /**
+    * Get the user's displayed name.
+    *
+    * @return string
+    */
+    public function getDisplayNameAttribute()
+    {
+        if ($this->show_real_name) {
+            return "{$this->last_name} {$this->first_name}";
+        } else {
+            return $this->name;
+        }
+    }
 
     /**
      * Groups that user is in.

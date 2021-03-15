@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,26 @@ class Payment extends Model
         'category_id',
         'group_id',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
+
+
+    /**
+     * Return right format of createAt
+     * @param $date
+     * @return string
+     */
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('d.m.Y H:i');
+    }
 
     /**
      * Return group

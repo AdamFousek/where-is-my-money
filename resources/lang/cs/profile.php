@@ -14,7 +14,19 @@ return [
     ],
 
     'name' => [
+        'title' => 'Uživatelské jméno',
+    ],
+
+    'shoRealName' => [
+        'title' => 'Zobrazovat skutečné jméno',
+    ],
+
+    'firstName' => [
         'title' => 'Jméno',
+    ],
+
+    'lastName' => [
+        'title' => 'Příjmení',
     ],
 
     'email' => [

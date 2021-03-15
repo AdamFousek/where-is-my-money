@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +22,26 @@ class Group extends Model
         'user_id',
         'uuid',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
+
+
+    /**
+     * Return right format of createAt
+     * @param $date
+     * @return string
+     */
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('d.m.Y H:i');
+    }
 
     /**
      * Return all users belong in groups
@@ -55,8 +76,8 @@ class Group extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function createdUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
