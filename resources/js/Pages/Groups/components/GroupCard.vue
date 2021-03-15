@@ -17,19 +17,28 @@
             </div>
         </div>
 
-        <group-card-info-block :title="__('groups.card.lastPaymentWho')"
-                               :data="'UserName'"></group-card-info-block>
-        <group-card-info-block :title="__('groups.card.lastPayment')"
-                               :data="'23.3.2021 9:45'"
+        <group-card-info-block v-if="group.payments.length"
+                               :title="__('groups.card.lastPaymentWho')"
+                               :data="group.payments[0].user.display_name"></group-card-info-block>
+        <group-card-info-block v-else
+                               :title="__('groups.card.lastPaymentWho')"
+                               :data="'-'"></group-card-info-block>
+        <group-card-info-block v-if="group.payments.length"
+                               :title="__('groups.card.lastPayment')"
+                               :data="group.payments[0].created_at"
+                               class="mb-2"></group-card-info-block>
+        <group-card-info-block v-else
+                               :title="__('groups.card.lastPayment')"
+                               :data="'-'"
                                class="mb-2"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.createdBy')"
-                               :data="'UserName'"></group-card-info-block>
+                               :data="group.created_user.display_name"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.created')"
-                               :data="createdAt"></group-card-info-block>
+                               :data="group.created_at"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfUsers')"
-                               :data="'0'"></group-card-info-block>
+                               :data="group.users_count"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfPayments')"
-                               :data="'0'"></group-card-info-block>
+                               :data="group.payments.length"></group-card-info-block>
         <div class="flex justify-end flex-wrap text-sm">
             <basic-link :href="route('group.show', group)">
                 {{ __('groups.card.showMore') }}
@@ -50,10 +59,5 @@ export default {
         BasicLink,
         GroupCardInfoBlock,
     },
-    computed: {
-        createdAt() {
-            console.log(Date.parse(this.group.created_at));
-        }
-    }
 }
 </script>

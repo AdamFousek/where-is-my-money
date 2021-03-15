@@ -13,7 +13,7 @@
 export default {
     props: {
         title: String,
-        data: String,
+        data: String|Number|Boolean,
     }
 }
 </script>

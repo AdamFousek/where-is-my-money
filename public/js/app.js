@@ -4613,6 +4613,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4622,11 +4631,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_0__.default,
     GroupCardInfoBlock: _Pages_Groups_components_GroupCardInfoBlock__WEBPACK_IMPORTED_MODULE_1__.default
-  },
-  computed: {
-    createdAt: function createdAt() {
-      console.log(Date.parse(this.group.created_at));
-    }
   }
 });
 
@@ -4657,7 +4661,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     title: String,
-    data: String
+    data: String | Number | Boolean
   }
 });
 
@@ -5688,6 +5692,48 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Mixins/trans.js":
+/*!**************************************!*\
+  !*** ./resources/js/Mixins/trans.js ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = {
+  methods: {
+    /**
+     * Translate the given key.
+     */
+    __: function __(key, replace) {
+      var translation,
+          translationNotFound = true;
+
+      try {
+        translation = key.split('.').reduce(function (t, i) {
+          return t[i] || null;
+        }, window._translations[window._locale].php);
+
+        if (translation) {
+          translationNotFound = false;
+        }
+      } catch (e) {
+        translation = key;
+      }
+
+      if (translationNotFound) {
+        translation = window._translations[window._locale]['json'][key] ? window._translations[window._locale]['json'][key] : key;
+      }
+
+      _.forEach(replace, function (value, key) {
+        translation = translation.replace(':' + key, value);
+      });
+
+      return translation;
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -5710,7 +5756,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.mixin({
     route: route
   }
 });
-vue__WEBPACK_IMPORTED_MODULE_2__.default.mixin(__webpack_require__(/*! ./trans */ "./resources/js/trans.js"));
+vue__WEBPACK_IMPORTED_MODULE_2__.default.mixin(__webpack_require__(/*! ./Mixins/trans */ "./resources/js/Mixins/trans.js"));
 vue__WEBPACK_IMPORTED_MODULE_2__.default.use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.plugin);
 vue__WEBPACK_IMPORTED_MODULE_2__.default.use(portal_vue__WEBPACK_IMPORTED_MODULE_1__.default);
 var app = document.getElementById('app');
@@ -5757,48 +5803,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/trans.js":
-/*!*******************************!*\
-  !*** ./resources/js/trans.js ***!
-  \*******************************/
-/***/ ((module) => {
-
-module.exports = {
-  methods: {
-    /**
-     * Translate the given key.
-     */
-    __: function __(key, replace) {
-      var translation,
-          translationNotFound = true;
-
-      try {
-        translation = key.split('.').reduce(function (t, i) {
-          return t[i] || null;
-        }, window._translations[window._locale].php);
-
-        if (translation) {
-          translationNotFound = false;
-        }
-      } catch (e) {
-        translation = key;
-      }
-
-      if (translationNotFound) {
-        translation = window._translations[window._locale]['json'][key] ? window._translations[window._locale]['json'][key] : key;
-      }
-
-      _.forEach(replace, function (value, key) {
-        translation = translation.replace(':' + key, value);
-      });
-
-      return translation;
-    }
-  }
-};
 
 /***/ }),
 
@@ -34405,32 +34409,56 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("group-card-info-block", {
-        attrs: { title: _vm.__("groups.card.lastPaymentWho"), data: "UserName" }
-      }),
+      _vm.group.payments.length
+        ? _c("group-card-info-block", {
+            attrs: {
+              title: _vm.__("groups.card.lastPaymentWho"),
+              data: _vm.group.payments[0].user.display_name
+            }
+          })
+        : _c("group-card-info-block", {
+            attrs: { title: _vm.__("groups.card.lastPaymentWho"), data: "-" }
+          }),
+      _vm._v(" "),
+      _vm.group.payments.length
+        ? _c("group-card-info-block", {
+            staticClass: "mb-2",
+            attrs: {
+              title: _vm.__("groups.card.lastPayment"),
+              data: _vm.group.payments[0].created_at
+            }
+          })
+        : _c("group-card-info-block", {
+            staticClass: "mb-2",
+            attrs: { title: _vm.__("groups.card.lastPayment"), data: "-" }
+          }),
       _vm._v(" "),
       _c("group-card-info-block", {
-        staticClass: "mb-2",
         attrs: {
-          title: _vm.__("groups.card.lastPayment"),
-          data: "23.3.2021 9:45"
+          title: _vm.__("groups.card.createdBy"),
+          data: _vm.group.created_user.display_name
         }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
-        attrs: { title: _vm.__("groups.card.createdBy"), data: "UserName" }
+        attrs: {
+          title: _vm.__("groups.card.created"),
+          data: _vm.group.created_at
+        }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
-        attrs: { title: _vm.__("groups.card.created"), data: _vm.createdAt }
+        attrs: {
+          title: _vm.__("groups.card.numberOfUsers"),
+          data: _vm.group.users_count
+        }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
-        attrs: { title: _vm.__("groups.card.numberOfUsers"), data: "0" }
-      }),
-      _vm._v(" "),
-      _c("group-card-info-block", {
-        attrs: { title: _vm.__("groups.card.numberOfPayments"), data: "0" }
+        attrs: {
+          title: _vm.__("groups.card.numberOfPayments"),
+          data: _vm.group.payments.length
+        }
       }),
       _vm._v(" "),
       _c(

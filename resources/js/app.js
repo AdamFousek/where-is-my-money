@@ -6,7 +6,7 @@ import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-v
 import PortalVue from 'portal-vue';
 
 Vue.mixin({ methods: { route } });
-Vue.mixin(require('./trans'))
+Vue.mixin(require('./Mixins/trans'));
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
 

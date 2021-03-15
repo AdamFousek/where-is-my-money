@@ -20,6 +20,13 @@ class GroupController extends Controller
     {
         $user = Auth::user();
         $groups = $user->groups()
+            ->with([
+                'createdUser',
+                'payments' => function ($query) {
+                    $query->with('user')->latest();
+                }
+            ])
+            ->withCount(['users'])
             ->orderBy('is_favorite', 'desc')
             ->get();
 
