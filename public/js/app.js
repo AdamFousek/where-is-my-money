@@ -4384,27 +4384,16 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: this.$inertia.form({
+        _method: 'POST',
         name: ''
       })
     };
   },
   methods: {
     createGroup: function createGroup() {
-      var _this = this;
-
       this.form.post(route('group.store'), {
         errorBag: 'createGroup',
-        preserveScroll: true,
-        onSuccess: function onSuccess() {
-          return _this.form.reset();
-        },
-        onError: function onError() {
-          if (_this.form.errors.name) {
-            _this.form.reset('name');
-
-            _this.$refs.name.focus();
-          }
-        }
+        preserveScroll: true
       });
     }
   }
@@ -34046,12 +34035,7 @@ var render = function() {
                       return [
                         _c(
                           "basic-link",
-                          {
-                            attrs: {
-                              color: _vm.green,
-                              href: _vm.route("group.index")
-                            }
-                          },
+                          { attrs: { href: _vm.route("group.index") } },
                           [
                             _vm._v(
                               "\n                            " +

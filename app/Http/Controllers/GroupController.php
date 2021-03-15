@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Services\GroupService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class GroupController extends Controller
 {
+
+    /**
+     * @var GroupService
+     */
+    protected $groupService;
+
+    public function __construct(GroupService $groupService)
+    {
+        $this->groupService = $groupService;
+    }
+
     /**
      * Dashboard with groups
      */
@@ -53,6 +65,15 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->only([
+            'name',
+            'description',
+        ]);
+
+        $group = $this->groupService->createGroup($data);
+        return redirect()->route('group.index');
+
+        /*
         $request->validate([
             'name' => 'required',
         ]);
@@ -63,7 +84,7 @@ class GroupController extends Controller
         $group->save();
         $group->users()->attach(Auth::id());
 
-        return redirect()->route('group.index');
+        return redirect()->route('group.index');*/
     }
 
     /**

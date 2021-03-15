@@ -21,7 +21,7 @@
                         </template>
 
                         <template #actions>
-                            <basic-link :color="green" :href="route('group.index')">
+                            <basic-link :href="route('group.index')">
                                 {{ __('groups.back') }}
                             </basic-link>
                             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
@@ -59,6 +59,7 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
+                _method: 'POST',
                 name: '',
             }),
         }
@@ -67,15 +68,8 @@ export default {
         createGroup() {
             this.form.post(route('group.store'), {
                 errorBag: 'createGroup',
-                preserveScroll: true,
-                onSuccess: () => this.form.reset(),
-                onError: () => {
-                    if (this.form.errors.name) {
-                        this.form.reset('name')
-                        this.$refs.name.focus()
-                    }
-                }
-            })
+                preserveScroll: true
+            });
         },
     },
 }
