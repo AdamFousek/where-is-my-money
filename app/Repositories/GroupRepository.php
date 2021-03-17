@@ -7,7 +7,7 @@ use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class GroupRepository
+class GroupRepository implements RepositoryInterface
 {
 
     /**
@@ -24,11 +24,16 @@ class GroupRepository
         $this->group = $group;
     }
 
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
     /**
      * @param array $data
      * @return Group
      */
-    public function save(array $data): Group
+    public function create(array $data): Group
     {
         $group = new $this->group;
 
@@ -42,5 +47,38 @@ class GroupRepository
         $group->users()->attach(Auth::id());
 
         return $group;
+    }
+
+    public function update(array $data, $id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    public function show($id)
+    {
+        return $this->group->find($id);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllMyGroups()
+    {
+        $user = Auth::user();
+        return $user->groups()
+            ->with([
+                'createdUser',
+                'payments' => function ($query) {
+                    $query->with('user')->latest();
+                }
+            ])
+            ->withCount(['users'])
+            ->orderBy('is_favorite', 'desc')
+            ->get();
     }
 }

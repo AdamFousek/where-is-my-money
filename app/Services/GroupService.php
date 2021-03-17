@@ -28,6 +28,7 @@ class GroupService
     /**
      * @param array $data
      * @return Group
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function createGroup(array $data): Group
     {
@@ -36,6 +37,11 @@ class GroupService
             'description' => ['nullable'],
         ])->validateWithBag('createGroup');
 
-        return $this->groupRepository->save($data);
+        return $this->groupRepository->create($data);
+    }
+
+    public function getAllMyGroups()
+    {
+        return $this->groupRepository->getAllMyGroups();
     }
 }

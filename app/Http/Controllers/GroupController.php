@@ -30,17 +30,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $groups = $user->groups()
-            ->with([
-                'createdUser',
-                'payments' => function ($query) {
-                    $query->with('user')->latest();
-                }
-            ])
-            ->withCount(['users'])
-            ->orderBy('is_favorite', 'desc')
-            ->get();
+        $groups = $this->groupService->getAllMyGroups();
 
         return Inertia::render('Groups/Index', [
             'groups' => $groups,
@@ -62,6 +52,7 @@ class GroupController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -71,20 +62,7 @@ class GroupController extends Controller
         ]);
 
         $group = $this->groupService->createGroup($data);
-        return redirect()->route('group.index');
-
-        /*
-        $request->validate([
-            'name' => 'required',
-        ]);
-        $group = new Group;
-        $group->name = $request->name;
-        $group->user_id = Auth::id();
-        $group->uuid = Str::uuid();
-        $group->save();
-        $group->users()->attach(Auth::id());
-
-        return redirect()->route('group.index');*/
+        return redirect()->route('group.show', $group);
     }
 
     /**
@@ -96,6 +74,10 @@ class GroupController extends Controller
     public function show(Group $group)
     {
         $user = $group->users()->where('id', Auth::id())->first();
+
+        if (is_null($user)) {
+            abort(404);
+        }
 
         return Inertia::render('Groups/Show', [
             'group' => $group,
