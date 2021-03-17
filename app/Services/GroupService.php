@@ -35,7 +35,7 @@ class GroupService
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable'],
         ])->validateWithBag('createGroup');
-        $t->test();
+
         return $this->groupRepository->save($data);
     }
 }

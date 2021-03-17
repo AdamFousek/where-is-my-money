@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 
 class DashboardController extends Controller
 {
@@ -20,10 +21,14 @@ class DashboardController extends Controller
 
     /**
      * Public index page
-     * @return \Inertia\Response
+     * @return \Illuminate\Http\RedirectResponse|\Inertia\Response
      */
     public function index()
     {
+        if (Auth::check()) {
+            return Redirect::route('dashboard');
+        }
+
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),

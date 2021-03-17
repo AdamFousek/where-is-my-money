@@ -32,15 +32,23 @@ class Group extends Model
         'created_at' => 'datetime',
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'created'
+    ];
+
 
     /**
      * Return right format of createAt
-     * @param $date
      * @return string
      */
-    public function getCreatedAtAttribute($date)
+    public function getCreatedAttribute()
     {
-        return Carbon::parse($date)->format('d.m.Y H:i');
+        return $this->created_at->format('d.m.Y H:i');
     }
 
     /**

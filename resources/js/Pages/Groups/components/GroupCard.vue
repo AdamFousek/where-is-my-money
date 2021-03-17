@@ -25,7 +25,7 @@
                                :data="'-'"></group-card-info-block>
         <group-card-info-block v-if="group.payments.length"
                                :title="__('groups.card.lastPayment')"
-                               :data="group.payments[0].created_at"
+                               :data="group.payments[0].created"
                                class="mb-2"></group-card-info-block>
         <group-card-info-block v-else
                                :title="__('groups.card.lastPayment')"
@@ -34,7 +34,7 @@
         <group-card-info-block :title="__('groups.card.createdBy')"
                                :data="group.created_user.display_name"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.created')"
-                               :data="group.created_at"></group-card-info-block>
+                               :data="group.created"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfUsers')"
                                :data="group.users_count"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfPayments')"
