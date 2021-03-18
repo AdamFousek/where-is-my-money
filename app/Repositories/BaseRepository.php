@@ -36,7 +36,7 @@ class BaseRepository
 
     public function show($id)
     {
-        return $this->model-findOrFail($id);
+        return $this->model->findOrFail($id);
     }
 
 }
