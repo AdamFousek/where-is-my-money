@@ -6,7 +6,9 @@ namespace App\Services;
 
 use App\Models\Group;
 use App\Repositories\GroupRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class GroupService
@@ -37,11 +39,24 @@ class GroupService
             'description' => ['nullable'],
         ])->validateWithBag('createGroup');
 
-        return $this->groupRepository->create($data);
+        $data['uuid'] = Str::uuid();
+        $data['user_id'] = Auth::id();
+
+        $group = $this->groupRepository->create($data);
+        $group->users()->attach(Auth::id());
+
+        return $group;
     }
 
     public function getAllMyGroups()
     {
         return $this->groupRepository->getAllMyGroups();
+    }
+
+    public function toggleFavorite(Group $group): void
+    {
+        $user = $group->users()->where('id', Auth::id())->first();
+        $favorite = !$user->pivot->is_favorite;
+        $this->groupRepository->toggleFavorite($group, $favorite);
     }
 }

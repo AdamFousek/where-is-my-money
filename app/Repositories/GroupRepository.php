@@ -5,15 +5,9 @@ namespace App\Repositories;
 
 use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
-class GroupRepository implements RepositoryInterface
+class GroupRepository extends BaseRepository
 {
-
-    /**
-     * @var Group
-     */
-    protected $group;
 
     /**
      * GroupRepository constructor.
@@ -21,47 +15,7 @@ class GroupRepository implements RepositoryInterface
      */
     public function __construct(Group $group)
     {
-        $this->group = $group;
-    }
-
-    public function all()
-    {
-        // TODO: Implement all() method.
-    }
-
-    /**
-     * @param array $data
-     * @return Group
-     */
-    public function create(array $data): Group
-    {
-        $group = new $this->group;
-
-        $group->fill([
-            'name' => $data['name'],
-            'description' => $data['description'] ?? '',
-            'user_id' => Auth::id(),
-            'uuid' => Str::uuid(),
-        ])->save();
-
-        $group->users()->attach(Auth::id());
-
-        return $group;
-    }
-
-    public function update(array $data, $id)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
-    }
-
-    public function show($id)
-    {
-        return $this->group->find($id);
+        parent::__construct($group);
     }
 
     /**
@@ -80,5 +34,16 @@ class GroupRepository implements RepositoryInterface
             ->withCount(['users'])
             ->orderBy('is_favorite', 'desc')
             ->get();
+    }
+
+    /**
+     * @param Group $group
+     * @param Boolean $favorite
+     */
+    public function toggleFavorite(Group $group, bool $favorite): void
+    {
+        $group->users()->updateExistingPivot(Auth::id(), [
+            "is_favorite" => $favorite
+        ]);
     }
 }

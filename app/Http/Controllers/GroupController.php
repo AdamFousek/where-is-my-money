@@ -27,8 +27,10 @@ class GroupController extends Controller
 
     /**
      * Dashboard with groups
+     *
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         $groups = $this->groupService->getAllMyGroups();
 
@@ -42,7 +44,7 @@ class GroupController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Groups/Create');
     }
@@ -54,7 +56,7 @@ class GroupController extends Controller
      * @return RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $data = $request->only([
             'name',
@@ -71,7 +73,7 @@ class GroupController extends Controller
      * @param Group $group
      * @return Response
      */
-    public function show(Group $group)
+    public function show(Group $group): Response
     {
         $user = $group->users()->where('id', Auth::id())->first();
 
@@ -91,7 +93,7 @@ class GroupController extends Controller
      * @param Group $group
      * @return Response
      */
-    public function edit(Group $group)
+    public function edit(Group $group): Response
     {
         return Inertia::render('Groups/Edit', [
             'group' => $group,
@@ -117,7 +119,7 @@ class GroupController extends Controller
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Group $group)
+    public function destroy(Group $group): RedirectResponse
     {
         if ($group->trashed()) {
             $group->forceDelete();
@@ -138,12 +140,9 @@ class GroupController extends Controller
      * @param Group $group
      * @return RedirectResponse
      */
-    public function toggleFavorite(Group $group)
+    public function toggleFavorite(Group $group): RedirectResponse
     {
-        $user = $group->users()->where('id', Auth::id())->first();
-        $group->users()->updateExistingPivot(Auth::id(), [
-            "is_favorite" => !$user->pivot->is_favorite
-        ]);
+        $this->groupService->toggleFavorite($group);
 
         return back();
     }
