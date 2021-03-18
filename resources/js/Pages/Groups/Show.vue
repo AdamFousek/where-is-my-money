@@ -43,12 +43,10 @@ export default {
     },
     methods: {
         markFavoriteGroup() {
-            this.favoriteForm.post(route('group.toggleFavorite', this.group), {
+            this.favoriteForm.put(route('group.toggleFavorite', this.group), {
                 onSuccess: () => {
                     this.favoriteForm.reset()
                 },
-                onError: () => {
-                }
             })
         },
     },

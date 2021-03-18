@@ -3,32 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Services\GroupService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class GroupController extends Controller
 {
+
+    /**
+     * @var GroupService
+     */
+    protected $groupService;
+
+    public function __construct(GroupService $groupService)
+    {
+        $this->groupService = $groupService;
+    }
+
     /**
      * Dashboard with groups
+     *
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-        $user = Auth::user();
-        $groups = $user->groups()
-            ->with([
-                'createdUser',
-                'payments' => function ($query) {
-                    $query->with('user')->latest();
-                }
-            ])
-            ->withCount(['users'])
-            ->orderBy('is_favorite', 'desc')
-            ->get();
+        $groups = $this->groupService->getAllMyGroups();
 
         return Inertia::render('Groups/Index', [
             'groups' => $groups,
@@ -40,7 +44,7 @@ class GroupController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Groups/Create');
     }
@@ -50,20 +54,17 @@ class GroupController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
+        $data = $request->only([
+            'name',
+            'description',
         ]);
-        $group = new Group;
-        $group->name = $request->name;
-        $group->user_id = Auth::id();
-        $group->uuid = Str::uuid();
-        $group->save();
-        $group->users()->attach(Auth::id());
 
-        return redirect()->route('group.index');
+        $group = $this->groupService->createGroup($data);
+        return redirect()->route('group.show', $group);
     }
 
     /**
@@ -72,9 +73,13 @@ class GroupController extends Controller
      * @param Group $group
      * @return Response
      */
-    public function show(Group $group)
+    public function show(Group $group): Response
     {
         $user = $group->users()->where('id', Auth::id())->first();
+
+        if (is_null($user)) {
+            abort(404);
+        }
 
         return Inertia::render('Groups/Show', [
             'group' => $group,
@@ -88,7 +93,7 @@ class GroupController extends Controller
      * @param Group $group
      * @return Response
      */
-    public function edit(Group $group)
+    public function edit(Group $group): Response
     {
         return Inertia::render('Groups/Edit', [
             'group' => $group,
@@ -114,7 +119,7 @@ class GroupController extends Controller
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Group $group)
+    public function destroy(Group $group): RedirectResponse
     {
         if ($group->trashed()) {
             $group->forceDelete();
@@ -135,12 +140,9 @@ class GroupController extends Controller
      * @param Group $group
      * @return RedirectResponse
      */
-    public function toggleFavorite(Group $group)
+    public function toggleFavorite(Group $group): RedirectResponse
     {
-        $user = $group->users()->where('id', Auth::id())->first();
-        $group->users()->updateExistingPivot(Auth::id(), [
-            "is_favorite" => !$user->pivot->is_favorite
-        ]);
+        $this->groupService->toggleFavorite($group);
 
         return back();
     }
