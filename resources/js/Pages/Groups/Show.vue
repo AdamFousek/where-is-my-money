@@ -9,10 +9,10 @@
                     {{ group.name }}
                 </h2>
                 <inertia-link
-                    :href="route('group.index')"
-                    class="inline-flex items-center px-4 py-2 bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo transition ease-in-out duration-150"
+                    :href="route('group.edit', group)"
+                    class="inline-flex items-center px-4 py-2"
                 >
-                    {{ __('groups.back') }}
+                    <i class="fas fa-cog cursor-pointer text-2xl hover:text-green-500 focus:text-green-500"></i>
                 </inertia-link>
             </div>
         </template>
@@ -21,6 +21,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white my-8 p-4 overflow-hidden shadow-xl sm:rounded-lg">
                     {{ __('groups.show.payments') }}
+                    {{ group.description }}
                 </div>
             </div>
         </div>

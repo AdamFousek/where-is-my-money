@@ -17,6 +17,11 @@
                             <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" ref="name" autocomplete="group-name" />
                             <jet-input-error :message="form.errors.name" class="mt-2" />
                         </div>
+                        <div class="col-span-6 sm:col-span-4">
+                            <jet-label for="description" :value="__('groups.create.input.description')" />
+                            <jet-textarea id="description" type="text" class="mt-1 block w-full" v-model="form.description" ref="description" autocomplete="group-description" />
+                            <jet-input-error :message="form.errors.description" class="mt-2" />
+                        </div>
                     </template>
 
                     <template #actions>
@@ -40,6 +45,7 @@ import TheForm from "@/Components/Form/TheForm";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
+import JetTextarea from "@/Jetstream/Textarea";
 import BasicLink from "@/Components/Link/BasicLink";
 import BasicError from "@/Pages/Errors/BasicError";
 export default {
@@ -51,6 +57,7 @@ export default {
         JetInput,
         JetInputError,
         JetLabel,
+        JetTextarea,
         BasicLink,
         BasicError
     },
@@ -59,6 +66,7 @@ export default {
             form: this.$inertia.form({
                 _method: 'POST',
                 name: '',
+                description: '',
             }),
         }
     },

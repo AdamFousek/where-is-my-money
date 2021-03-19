@@ -25,10 +25,16 @@ return [
         'title' => 'Vytvořit skupinu',
         'input' => [
             'name' => 'Název skupiny',
+            'description' => 'Popis skupiny',
         ],
         'button' => [
             'create' => 'Vytvořit',
         ],
+    ],
+
+    'edit' => [
+        'title' => 'Editace skupiny',
+        'settings' => 'Nastavení',
     ],
 
     'show' => [

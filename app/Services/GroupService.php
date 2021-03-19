@@ -36,7 +36,7 @@ class GroupService
     {
         Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['nullable'],
+            'description' => ['string', 'nullable'],
         ])->validateWithBag('createGroup');
 
         $data['uuid'] = Str::uuid();
