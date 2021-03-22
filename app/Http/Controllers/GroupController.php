@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\GroupResource;
 use App\Models\Group;
 use App\Services\GroupService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -35,7 +34,7 @@ class GroupController extends Controller
         $groups = $this->groupService->getAllMyGroups();
 
         return Inertia::render('Groups/Index', [
-            'groups' => $groups,
+            'groups' => GroupResource::collection($groups),
         ]);
     }
 

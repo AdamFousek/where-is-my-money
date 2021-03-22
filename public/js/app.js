@@ -4625,6 +4625,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -35043,7 +35044,7 @@ var render = function() {
             "flex flex-wrap items-center text-xl my-2 py-2 border-b border-gray-400"
         },
         [
-          _vm.group.pivot.is_favorite
+          _vm.group.is_favorite
             ? _c(
                 "span",
                 { staticClass: "border-b-2 border-transparent mr-2" },
@@ -35083,23 +35084,23 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm.group.payments.length
+      _vm.group.payment
         ? _c("group-card-info-block", {
             attrs: {
               title: _vm.__("groups.card.lastPaymentWho"),
-              data: _vm.group.payments[0].user.display_name
+              data: _vm.group.payment.user
             }
           })
         : _c("group-card-info-block", {
             attrs: { title: _vm.__("groups.card.lastPaymentWho"), data: "-" }
           }),
       _vm._v(" "),
-      _vm.group.payments.length
+      _vm.group.payment
         ? _c("group-card-info-block", {
             staticClass: "mb-2",
             attrs: {
               title: _vm.__("groups.card.lastPayment"),
-              data: _vm.group.payments[0].created
+              data: _vm.group.payment.created_at
             }
           })
         : _c("group-card-info-block", {
@@ -35115,20 +35116,23 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
-        attrs: { title: _vm.__("groups.card.created"), data: _vm.group.created }
+        attrs: {
+          title: _vm.__("groups.card.created"),
+          data: _vm.group.created_at
+        }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
         attrs: {
           title: _vm.__("groups.card.numberOfUsers"),
-          data: _vm.group.users_count
+          data: _vm.group.user_count
         }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
         attrs: {
           title: _vm.__("groups.card.numberOfPayments"),
-          data: _vm.group.payments.length
+          data: _vm.group.payments ? _vm.group.payments.length : 0
         }
       }),
       _vm._v(" "),

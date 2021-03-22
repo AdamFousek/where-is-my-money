@@ -26,9 +26,8 @@ class GroupRepository extends BaseRepository
         $user = Auth::user();
         return $user->groups()
             ->with([
-                'createdUser',
                 'payments' => function ($query) {
-                    $query->with('user')->latest();
+                    $query->with('user');
                 }
             ])
             ->withCount(['users'])

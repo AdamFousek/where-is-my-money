@@ -39,18 +39,7 @@ class Group extends Model
      * @var array
      */
     protected $appends = [
-        'created'
     ];
-
-
-    /**
-     * Return right format of createAt
-     * @return string
-     */
-    public function getCreatedAttribute()
-    {
-        return $this->created_at->format('d.m.Y H:i');
-    }
 
     /**
      * Return all users belong in groups

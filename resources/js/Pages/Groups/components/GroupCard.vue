@@ -1,7 +1,7 @@
 <template>
     <div class="bg-white mb-4 md:mb-8 p-4 overflow-hidden shadow-xl sm:rounded-lg w-full lg:w-96 md:w-5/12">
         <h2 class="flex flex-wrap items-center text-xl my-2 py-2 border-b border-gray-400">
-            <span v-if="group.pivot.is_favorite" class="border-b-2 border-transparent mr-2">
+            <span v-if="group.is_favorite" class="border-b-2 border-transparent mr-2">
                 <i class="fas fa-star text-yellow-400"></i>
             </span>
             <basic-link :href="route('group.show', group)" :color="'green'">
@@ -17,15 +17,15 @@
             </div>
         </div>
 
-        <group-card-info-block v-if="group.payments.length"
+        <group-card-info-block v-if="group.payment"
                                :title="__('groups.card.lastPaymentWho')"
-                               :data="group.payments[0].user.display_name"></group-card-info-block>
+                               :data="group.payment.user"></group-card-info-block>
         <group-card-info-block v-else
                                :title="__('groups.card.lastPaymentWho')"
                                :data="'-'"></group-card-info-block>
-        <group-card-info-block v-if="group.payments.length"
+        <group-card-info-block v-if="group.payment"
                                :title="__('groups.card.lastPayment')"
-                               :data="group.payments[0].created"
+                               :data="group.payment.created_at"
                                class="mb-2"></group-card-info-block>
         <group-card-info-block v-else
                                :title="__('groups.card.lastPayment')"
@@ -34,11 +34,11 @@
         <group-card-info-block :title="__('groups.card.createdBy')"
                                :data="group.created_user.display_name"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.created')"
-                               :data="group.created"></group-card-info-block>
+                               :data="group.created_at"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfUsers')"
-                               :data="group.users_count"></group-card-info-block>
+                               :data="group.user_count"></group-card-info-block>
         <group-card-info-block :title="__('groups.card.numberOfPayments')"
-                               :data="group.payments.length"></group-card-info-block>
+                               :data="group.payments ? group.payments.length : 0"></group-card-info-block>
         <div class="flex justify-end flex-wrap text-sm">
             <basic-link :href="route('group.show', group)">
                 {{ __('groups.card.showMore') }}
