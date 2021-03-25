@@ -4701,15 +4701,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Show.vue",
-  props: ['group', 'isFavorite'],
+  props: ['group'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
     return {
+      isFavorite: this.group.is_favorite,
       favoriteForm: this.$inertia.form({})
     };
   },
@@ -4717,8 +4719,10 @@ __webpack_require__.r(__webpack_exports__);
     markFavoriteGroup: function markFavoriteGroup() {
       var _this = this;
 
-      this.favoriteForm.put(route('group.toggleFavorite', this.group), {
+      this.favoriteForm.put(this.group.links.toggleFavorite, {
         onSuccess: function onSuccess() {
+          _this.isFavorite = !_this.isFavorite;
+
           _this.favoriteForm.reset();
         }
       });
@@ -4741,15 +4745,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Link/BasicLink */ "./resources/js/Components/Link/BasicLink.vue");
 /* harmony import */ var _Pages_Groups_components_GroupCardInfoBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Groups/components/GroupCardInfoBlock */ "./resources/js/Pages/Groups/components/GroupCardInfoBlock.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -34964,7 +34959,7 @@ var render = function() {
                     "inertia-link",
                     {
                       staticClass: "inline-flex items-center px-4 py-2",
-                      attrs: { href: _vm.route("group.edit", _vm.group) }
+                      attrs: { href: _vm.group.links.edit }
                     },
                     [
                       _c("i", {
@@ -34998,6 +34993,8 @@ var render = function() {
                   _vm._s(_vm.__("groups.show.payments")) +
                   "\n                " +
                   _vm._s(_vm.group.description) +
+                  "\n                " +
+                  _vm._s(_vm.group) +
                   "\n            "
               )
             ]
@@ -35054,12 +35051,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "basic-link",
-            {
-              attrs: {
-                href: _vm.route("group.show", _vm.group),
-                color: "green"
-              }
-            },
+            { attrs: { href: _vm.group.links.show, color: "green" } },
             [_vm._v("\n            " + _vm._s(_vm.group.name) + "\n        ")]
           )
         ],
@@ -35084,34 +35076,27 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm.group.payment
-        ? _c("group-card-info-block", {
-            attrs: {
-              title: _vm.__("groups.card.lastPaymentWho"),
-              data: _vm.group.payment.user
-            }
-          })
-        : _c("group-card-info-block", {
-            attrs: { title: _vm.__("groups.card.lastPaymentWho"), data: "-" }
-          }),
+      _c("group-card-info-block", {
+        attrs: {
+          title: _vm.__("groups.card.lastPaymentWho"),
+          data: _vm.group.last_payment
+            ? _vm.group.last_payment.user.display_name
+            : "-"
+        }
+      }),
       _vm._v(" "),
-      _vm.group.payment
-        ? _c("group-card-info-block", {
-            staticClass: "mb-2",
-            attrs: {
-              title: _vm.__("groups.card.lastPayment"),
-              data: _vm.group.payment.created_at
-            }
-          })
-        : _c("group-card-info-block", {
-            staticClass: "mb-2",
-            attrs: { title: _vm.__("groups.card.lastPayment"), data: "-" }
-          }),
+      _c("group-card-info-block", {
+        staticClass: "mb-2",
+        attrs: {
+          title: _vm.__("groups.card.lastPayment"),
+          data: _vm.group.last_payment ? _vm.group.last_payment.created_at : "-"
+        }
+      }),
       _vm._v(" "),
       _c("group-card-info-block", {
         attrs: {
           title: _vm.__("groups.card.createdBy"),
-          data: _vm.group.created_user.display_name
+          data: _vm.group.created_user
         }
       }),
       _vm._v(" "),
@@ -35125,14 +35110,14 @@ var render = function() {
       _c("group-card-info-block", {
         attrs: {
           title: _vm.__("groups.card.numberOfUsers"),
-          data: _vm.group.user_count
+          data: _vm.group.users_count
         }
       }),
       _vm._v(" "),
       _c("group-card-info-block", {
         attrs: {
           title: _vm.__("groups.card.numberOfPayments"),
-          data: _vm.group.payments ? _vm.group.payments.length : 0
+          data: _vm.group.payments_count
         }
       }),
       _vm._v(" "),

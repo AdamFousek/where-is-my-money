@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\GroupController;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class GroupResource extends JsonResource
 {
@@ -20,15 +22,19 @@ class GroupResource extends JsonResource
             'email' => $this->email,
             'description' => $this->description,
             'created_at' => $this->created_at->format('d.m.Y H:i'),
-            'created_user' => new UserResource($this->createdUser),
-            'user_count' => count($this->users),
-            'is_favorite' => $this->whenPivotLoaded('group_user', function () {
-                return $this->pivot->is_favorite;
-            }),
-            'payment' => $this->whenLoaded('payments', function() {
-                return new PaymentResource($this->payments()->latest()->first());
-            }),
+            'created_user' => $this->created_user,
+            'users_count' => $this->users_count,
+            'payments_count' => $this->payments_count,
+            'is_favorite' => $this->users()->find(Auth::id())->pivot->is_favorite,
+            'last_payment' => new PaymentResource($this->last_payment),
             'payments' => PaymentResource::collection($this->whenLoaded('payments')),
+            'users' => UserResource::collection($this->whenLoaded('users')),
+
+            'links' => [
+                'show' => action([GroupController::class, 'show'], $this),
+                'edit' => action([GroupController::class, 'edit'], $this),
+                'toggleFavorite' => action([GroupController::class, 'toggleFavorite'], $this),
+            ]
         ];
     }
 }

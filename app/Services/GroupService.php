@@ -14,20 +14,6 @@ use Illuminate\Support\Str;
 class GroupService
 {
     /**
-     * @var GroupRepository
-     */
-    private $groupRepository;
-
-    /**
-     * GroupService constructor.
-     * @param GroupRepository $groupRepository
-     */
-    public function __construct(GroupRepository $groupRepository)
-    {
-        $this->groupRepository = $groupRepository;
-    }
-
-    /**
      * @param array $data
      * @return Group
      * @throws \Illuminate\Validation\ValidationException
@@ -42,21 +28,36 @@ class GroupService
         $data['uuid'] = Str::uuid();
         $data['user_id'] = Auth::id();
 
-        $group = $this->groupRepository->create($data);
+        $group = Group::create($data);
         $group->users()->attach(Auth::id());
 
         return $group;
     }
 
+    /**
+     * Get all my groups
+     * @return mixed
+     */
     public function getAllMyGroups()
     {
-        return $this->groupRepository->getAllMyGroups();
+        $user = Auth::user();
+        return $user->groups()
+            ->withCount(['users', 'payments'])
+            ->orderBy('is_favorite', 'desc')
+            ->get();
     }
 
+    /**
+     * Toggle favorite group
+     * @param Group $group
+     */
     public function toggleFavorite(Group $group): void
     {
         $user = $group->users()->where('id', Auth::id())->first();
         $favorite = !$user->pivot->is_favorite;
-        $this->groupRepository->toggleFavorite($group, $favorite);
+
+        $group->users()->updateExistingPivot(Auth::id(), [
+            "is_favorite" => $favorite
+        ]);
     }
 }

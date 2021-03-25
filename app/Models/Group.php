@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +38,17 @@ class Group extends Model
      * @var array
      */
     protected $appends = [
+        'last_payment',
+        'created_user'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id'
     ];
 
     /**
@@ -62,6 +72,15 @@ class Group extends Model
     }
 
     /**
+     * Get last payment if any
+     * @return Model|\Illuminate\Database\Eloquent\Relations\HasMany|object|null
+     */
+    public function getLastPaymentAttribute()
+    {
+        return $this->payments()->with('user')->latest()->first();
+    }
+
+    /**
      * All categories that belongs to group
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -71,11 +90,26 @@ class Group extends Model
         return $this->hasMany(PaymentCategory::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function createdUser()
+    public function getCreatedUserAttribute()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->user->display_name;
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
     }
 }

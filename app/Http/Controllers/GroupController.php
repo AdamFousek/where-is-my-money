@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\GroupResource;
+use App\Http\Resources\UserResource;
 use App\Models\Group;
 use App\Services\GroupService;
 use Illuminate\Http\RedirectResponse;
@@ -74,15 +75,14 @@ class GroupController extends Controller
      */
     public function show(Group $group): Response
     {
-        $user = $group->users()->where('id', Auth::id())->first();
-
-        if (is_null($user)) {
+        $users = $group->users;
+        if (!$users->contains(Auth::id())) {
             abort(404);
         }
 
         return Inertia::render('Groups/Show', [
-            'group' => $group,
-            'isFavorite' => $user->pivot->is_favorite,
+            'group' => new GroupResource($group->load('payments')),
+            'users' => UserResource::collection($users),
         ]);
     }
 

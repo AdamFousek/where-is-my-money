@@ -15,10 +15,12 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->index();
+
             $table->string('name');
             $table->text('description')->nullable(true);
-            $table->uuid('uuid');
             $table->unsignedBigInteger('user_id');
+
             $table->softDeletes();
             $table->timestamps();
 

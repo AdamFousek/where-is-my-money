@@ -19,6 +19,7 @@ Route::get('/', [DashboardController::class, 'index'])->name('index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::resource('group', GroupController::class);
+
     Route::put('group/{group}/toggle-favorite', [GroupController::class, 'toggleFavorite'])->name('group.toggleFavorite');
+    Route::resource('group', GroupController::class);
 });

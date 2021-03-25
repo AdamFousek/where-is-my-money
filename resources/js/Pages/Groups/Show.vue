@@ -9,7 +9,7 @@
                     {{ group.name }}
                 </h2>
                 <inertia-link
-                    :href="route('group.edit', group)"
+                    :href="group.links.edit"
                     class="inline-flex items-center px-4 py-2"
                 >
                     <i class="fas fa-cog cursor-pointer text-2xl hover:text-green-500 focus:text-green-500"></i>
@@ -22,6 +22,7 @@
                 <div class="bg-white my-8 p-4 overflow-hidden shadow-xl sm:rounded-lg">
                     {{ __('groups.show.payments') }}
                     {{ group.description }}
+                    {{ group }}
                 </div>
             </div>
         </div>
@@ -33,19 +34,21 @@ import AppLayout from '@/Layouts/AppLayout'
 
 export default {
     name: "Show.vue",
-    props: ['group', 'isFavorite'],
+    props: ['group'],
     components: {
         AppLayout,
     },
     data() {
         return {
+            isFavorite: this.group.is_favorite,
             favoriteForm: this.$inertia.form({}),
         }
     },
     methods: {
         markFavoriteGroup() {
-            this.favoriteForm.put(route('group.toggleFavorite', this.group), {
+            this.favoriteForm.put(this.group.links.toggleFavorite, {
                 onSuccess: () => {
+                    this.isFavorite = !this.isFavorite;
                     this.favoriteForm.reset()
                 },
             })
