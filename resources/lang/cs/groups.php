@@ -38,7 +38,14 @@ return [
     ],
 
     'show' => [
-        'payments' => 'Platby',
+        'payments' => [
+            'title' => 'Platby',
+            'amount' => 'Cena',
+            'name' => 'Název',
+            'category' => 'Kategorie',
+            'createdBy' => 'Zaplatil',
+            'created' => 'Dne',
+        ],
         'description' => [
             'title' => 'Informace',
             'description' => 'Popis',

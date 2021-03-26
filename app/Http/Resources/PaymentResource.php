@@ -19,6 +19,8 @@ class PaymentResource extends JsonResource
             'name' => $this->name,
             'amount' => $this->amount,
             'created_at' => $this->created_at->format('d.m.Y H:i'),
+            'category_id' => $this->category_id,
+            'user_id' => $this->user_id,
             'user' => new UserResource($this->whenLoaded('user')),
             'category' => new PaymentCategoryResource($this->whenLoaded('category')),
         ];

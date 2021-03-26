@@ -4699,6 +4699,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4922,10 +4924,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "PaymentsCard.vue",
   props: {
-    payments: Array
+    payments: Array,
+    users: Array,
+    categories: Array
+  },
+  methods: {
+    getUserName: function getUserName(id) {
+      var user = this.users.find(function (user) {
+        return user.id === id;
+      });
+      return user.display_name;
+    },
+    getCategoryName: function getCategoryName(id) {
+      var category = this.categories.find(function (user) {
+        return user.id === id;
+      });
+      return category.name;
+    }
   }
 });
 
@@ -35223,7 +35277,7 @@ var render = function() {
       ])
     },
     [
-      _vm._v(" "),
+      _vm._v("\n\n    " + _vm._s(_vm.group) + "\n\n    "),
       _c(
         "div",
         {
@@ -35231,7 +35285,13 @@ var render = function() {
             "max-w-7xl mx-auto flex items-start justify-between flex-wrap sm:px-6 lg:px-8"
         },
         [
-          _c("payments-card", { attrs: { payments: _vm.group.payments } }),
+          _c("payments-card", {
+            attrs: {
+              payments: _vm.group.payments,
+              users: _vm.group.users,
+              categories: _vm.group.categories
+            }
+          }),
           _vm._v(" "),
           _c("group-info-card", { attrs: { group: _vm.group } })
         ],
@@ -35593,8 +35653,169 @@ var render = function() {
     },
     [
       _c("h2", { staticClass: "text-xl my-2 py-2 border-b border-gray-400" }, [
-        _vm._v("\n        " + _vm._s(_vm.__("groups.show.payments")) + "\n    ")
-      ])
+        _vm._v(
+          "\n        " + _vm._s(_vm.__("groups.show.payments.title")) + "\n    "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "py-2" },
+        [
+          _c("div", { staticClass: "flex flex-wrap justify-between my-2" }, [
+            _c(
+              "div",
+              { staticClass: "w-1/5 cursor-pointer border-r border-gray-200" },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.__("groups.show.payments.name")) +
+                    "\n            "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-1/5 cursor-pointer border-r border-gray-200 text-center"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.__("groups.show.payments.amount")) +
+                    "\n            "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-1/5 cursor-pointer border-r border-gray-200 text-center"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.__("groups.show.payments.createdBy")) +
+                    "\n            "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "w-1/5 cursor-pointer border-r border-gray-200 text-center"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.__("groups.show.payments.created")) +
+                    "\n            "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-1/5 cursor-pointer text-center" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.__("groups.show.payments.category")) +
+                  "\n            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.payments, function(payment) {
+            return _c(
+              "div",
+              {
+                staticClass: "flex flex-wrap justify-between items-center my-2"
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "self-stretch flex items-center w-1/5 cursor-pointer border-r border-gray-200"
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(payment.name) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "p-2 self-stretch flex items-center w-1/5 cursor-pointer border-r border-gray-200 text-center"
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(payment.amount) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "p-2 self-stretch flex items-center w-1/5 cursor-pointer border-r border-gray-200 text-center"
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.getUserName(payment.user_id)) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "p-2 self-stretch flex items-center w-1/5 cursor-pointer border-r border-gray-200 text-center"
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(payment.created_at) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "p-2 self-stretch flex items-center w-1/5 cursor-pointer text-center"
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.getCategoryName(payment.category_id)) +
+                        "\n            "
+                    )
+                  ]
+                )
+              ]
+            )
+          })
+        ],
+        2
+      )
     ]
   )
 }
