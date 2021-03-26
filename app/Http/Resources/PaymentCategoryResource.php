@@ -17,7 +17,7 @@ class PaymentCategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
+            'user' => new UserResource($this->whenLoaded('user')),
             'color' => $this->color,
         ];
     }

@@ -33,7 +33,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import BasicLink from "@/Components/Link/BasicLink";
-import GroupCard from "@/Pages/Groups/components/GroupCard";
+import GroupCard from "@/Pages/Groups/components/index/GroupCard";
 import JetInput from "@/Jetstream/Input";
 
 export default {

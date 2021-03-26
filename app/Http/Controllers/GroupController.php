@@ -81,7 +81,9 @@ class GroupController extends Controller
         }
 
         return Inertia::render('Groups/Show', [
-            'group' => new GroupResource($group->load('payments')),
+            'group' => new GroupResource($group->load(['payments' => function ($query) {
+                $query->with('category')->orderBy('created_at', 'desc');
+            }])),
             'users' => UserResource::collection($users),
         ]);
     }

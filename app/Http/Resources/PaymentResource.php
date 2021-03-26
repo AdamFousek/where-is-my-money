@@ -20,7 +20,7 @@ class PaymentResource extends JsonResource
             'amount' => $this->amount,
             'created_at' => $this->created_at->format('d.m.Y H:i'),
             'user' => new UserResource($this->whenLoaded('user')),
-            'category' => PaymentCategoryResource::collection($this->whenLoaded('category')),
+            'category' => new PaymentCategoryResource($this->whenLoaded('category')),
         ];
     }
 }

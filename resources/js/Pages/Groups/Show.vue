@@ -17,26 +17,25 @@
             </div>
         </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white my-8 p-4 overflow-hidden shadow-xl sm:rounded-lg">
-                    {{ __('groups.show.payments') }}
-                    {{ group.description }}
-                    {{ group }}
-                </div>
-            </div>
+        <div class="max-w-7xl mx-auto flex items-start justify-between flex-wrap sm:px-6 lg:px-8">
+            <payments-card :payments="group.payments"></payments-card>
+            <group-info-card :group="group"></group-info-card>
         </div>
     </app-layout>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import PaymentsCard from "@/Pages/Groups/components/show/PaymentsCard";
+import GroupInfoCard from "@/Pages/Groups/components/show/GroupInfoCard";
 
 export default {
     name: "Show.vue",
     props: ['group'],
     components: {
         AppLayout,
+        PaymentsCard,
+        GroupInfoCard
     },
     data() {
         return {

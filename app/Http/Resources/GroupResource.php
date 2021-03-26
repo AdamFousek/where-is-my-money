@@ -27,6 +27,8 @@ class GroupResource extends JsonResource
             'payments_count' => $this->payments_count,
             'is_favorite' => $this->users()->find(Auth::id())->pivot->is_favorite,
             'last_payment' => new PaymentResource($this->last_payment),
+
+            'categories' => PaymentCategoryResource::collection($this->whenLoaded('categories')),
             'payments' => PaymentResource::collection($this->whenLoaded('payments')),
             'users' => UserResource::collection($this->whenLoaded('users')),
 

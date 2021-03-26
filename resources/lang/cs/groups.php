@@ -38,6 +38,16 @@ return [
     ],
 
     'show' => [
-        'payments' => 'Platby:',
+        'payments' => 'Platby',
+        'description' => [
+            'title' => 'Informace',
+            'description' => 'Popis',
+            'countPayments' => 'Počet plateb',
+            'countUsers' => 'Počet uživatelů',
+            'users' => 'Uživatelé',
+            'createdBy' => 'Skupinu vytvořil',
+            'created' => 'Skupina vytvořena',
+        ],
+        'status' => 'Stav',
     ],
 ];
