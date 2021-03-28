@@ -17,8 +17,6 @@
             </div>
         </template>
 
-        {{ group }}
-
         <div class="max-w-7xl mx-auto flex items-start justify-between flex-wrap sm:px-6 lg:px-8">
             <payments-card :payments="group.payments" :users="group.users" :categories="group.categories"></payments-card>
             <group-info-card :group="group"></group-info-card>

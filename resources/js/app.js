@@ -4,11 +4,13 @@ require('./bootstrap');
 import Vue from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue';
 import PortalVue from 'portal-vue';
+import VTooltip from 'v-tooltip';
 
 Vue.mixin({ methods: { route } });
 Vue.mixin(require('./Mixins/trans'));
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
+Vue.use(VTooltip)
 
 const app = document.getElementById('app');
 
