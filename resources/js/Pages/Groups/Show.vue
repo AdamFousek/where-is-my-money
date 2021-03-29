@@ -10,16 +10,21 @@
                 </h2>
                 <inertia-link
                     :href="group.links.edit"
-                    class="inline-flex items-center px-4 py-2"
+                    class="inline-flex items-center px-4 py-2 hover:text-green-500 focus:text-green-500"
                 >
-                    <i class="fas fa-cog cursor-pointer text-2xl hover:text-green-500 focus:text-green-500"></i>
+                    <i class="fas fa-cog cursor-pointer text-2xl"></i>
                 </inertia-link>
             </div>
         </template>
 
         <div class="max-w-7xl mx-auto flex items-start justify-between flex-wrap sm:px-6 lg:px-8">
-            <payments-card :payments="group.payments" :users="group.users" :categories="group.categories"></payments-card>
-            <group-info-card :group="group"></group-info-card>
+            <payments-card :payments="payments"
+                           :users="users"
+                           :categories="categories"></payments-card>
+            <group-info-card :group="group"
+                             :payments="payments"
+                             :users="users"
+                             :categories="categories"></group-info-card>
         </div>
     </app-layout>
 </template>
@@ -31,7 +36,12 @@ import GroupInfoCard from "@/Pages/Groups/components/show/GroupInfoCard";
 
 export default {
     name: "Show.vue",
-    props: ['group'],
+    props: {
+        group: Object,
+        payments: Object,
+        categories: Array,
+        users: Array,
+    },
     components: {
         AppLayout,
         PaymentsCard,

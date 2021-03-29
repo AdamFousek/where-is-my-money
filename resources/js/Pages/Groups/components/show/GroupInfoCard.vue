@@ -12,10 +12,10 @@
             </h2>
 
             <group-card-info-block :title="__('groups.show.description.countPayments')"
-                                   :data="group.payments ? group.payments.length : 0"
+                                   :data="payments.meta.total"
                                    class="mb-2"></group-card-info-block>
             <group-card-info-block :title="__('groups.show.description.countUsers')"
-                                   :data="group.users ? group.users.length : 0"
+                                   :data="users.length"
                                    class="mb-2"></group-card-info-block>
             <group-card-info-block :title="__('groups.show.description.createdBy')"
                                    :data="group.created_user"
@@ -31,12 +31,36 @@
             </div>
 
             <div class="my-2 py-2">
+                <div class="flex justify-between items-center border-b border-gray-400 mb-2">
+                    <h4 class="text-lg">
+                        {{ __('groups.show.description.categories') }}
+                    </h4>
+                    <inertia-link
+                        :href="'#'"
+                        class="inline-flex items-center"
+                    >
+                        <i class="fas fa-plus cursor-pointer text-lg hover:text-green-500 focus:text-green-500"></i>
+                    </inertia-link>
+                </div>
+                <div class="flex flex-wrap justify-between">
+                    <div class="mb-1 cursor-default w-1/2 text-sm pl-4 relative"
+                         v-for="category in categories" :key="category.id">
+                        <div class="bookmark left-0 top-0" :style="{
+                            borderLeftColor: category.color,
+                            borderRightColor: category.color
+                        }"></div>
+                        {{ category.name }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-2 py-2">
                 <h4 class="mb-2 text-lg border-b border-gray-400">
                     {{ __('groups.show.description.users') }}
                 </h4>
                 <div class="flex flex-wrap justify-between">
-                    <div class="mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700 "
-                         v-for="user in group.users" :key="user.id">
+                    <div class="mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700"
+                         v-for="user in users" :key="user.id">
                         {{ user.display_name }}
                     </div>
                 </div>
@@ -55,7 +79,10 @@ export default {
     },
     props: {
         group: Object,
-    }
+        users: Array,
+        payments: Object,
+        categories: Array,
+    },
 }
 </script>
 

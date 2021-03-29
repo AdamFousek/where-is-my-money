@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\GroupResource;
+use App\Http\Resources\PaymentCategoryResource;
+use App\Http\Resources\PaymentResource;
 use App\Http\Resources\UserResource;
 use App\Models\Group;
+use App\Models\Payment;
 use App\Services\GroupService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -80,12 +83,14 @@ class GroupController extends Controller
             abort(404);
         }
 
-        return Inertia::render('Groups/Show', [
-            'group' => new GroupResource($group->load(['payments' => function ($query) {
-                $query->orderBy('created_at', 'desc');
-            }, 'categories'])),
-            'users' => UserResource::collection($users),
-        ]);
+        $data = [
+            'group' => new GroupResource($group),
+            'payments' => PaymentResource::collection(Payment::where('group_id', $group->id)->latest()->paginate(15)),
+            'users' => $users,
+            'categories' => PaymentCategoryResource::collection($group->categories),
+        ];
+
+        return Inertia::render('Groups/Show', $data);
     }
 
     /**

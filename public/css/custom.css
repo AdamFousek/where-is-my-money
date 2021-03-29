@@ -6222,8 +6222,6 @@ readers do not read off random characters that represent icons */
 
 .bookmark {
   position: absolute;
-  right: 0;
-  top: 0;
   height: 15px;
   width: 10px;
   padding: 0;

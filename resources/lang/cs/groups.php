@@ -45,6 +45,8 @@ return [
             'category' => 'Kategorie',
             'createdBy' => 'Zaplatil',
             'created' => 'Dne',
+            'next' => 'Další',
+            'prev' => 'Předchozí',
         ],
         'description' => [
             'title' => 'Informace',
@@ -54,6 +56,7 @@ return [
             'users' => 'Uživatelé',
             'createdBy' => 'Skupinu vytvořil',
             'created' => 'Skupina vytvořena',
+            'categories' => 'Kategorie',
         ],
         'status' => 'Stav',
     ],

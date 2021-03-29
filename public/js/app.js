@@ -1,29 +1,36 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
-/***/ ((module) => {
+/***/ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _classCallCheck)
+/* harmony export */ });
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-module.exports = _classCallCheck;
-module.exports.default = module.exports, module.exports.__esModule = true;
-
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
-  \************************************************************/
-/***/ ((module) => {
+/***/ "./node_modules/@babel/runtime/helpers/esm/createClass.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/createClass.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _createClass)
+/* harmony export */ });
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
@@ -40,17 +47,19 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
-module.exports = _createClass;
-module.exports.default = module.exports, module.exports.__esModule = true;
-
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
-  \***************************************************************/
-/***/ ((module) => {
+/***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _defineProperty)
+/* harmony export */ });
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -65,9 +74,6 @@ function _defineProperty(obj, key, value) {
 
   return obj;
 }
-
-module.exports = _defineProperty;
-module.exports.default = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
@@ -4798,12 +4804,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Show.vue",
-  props: ['group'],
+  props: {
+    group: Object,
+    payments: Object,
+    categories: Array,
+    users: Array
+  },
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
     PaymentsCard: _Pages_Groups_components_show_PaymentsCard__WEBPACK_IMPORTED_MODULE_1__.default,
@@ -4989,6 +5005,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "GroupInfoCard.vue",
@@ -4996,7 +5036,10 @@ __webpack_require__.r(__webpack_exports__);
     GroupCardInfoBlock: _Pages_Groups_components_GroupCardInfoBlock__WEBPACK_IMPORTED_MODULE_0__.default
   },
   props: {
-    group: Object
+    group: Object,
+    users: Array,
+    payments: Object,
+    categories: Array
   }
 });
 
@@ -5076,7 +5119,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Pages_Groups_components_show_PaymentItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Groups/components/show/PaymentItem */ "./resources/js/Pages/Groups/components/show/PaymentItem.vue");
+/* harmony import */ var _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Link/BasicLink */ "./resources/js/Components/Link/BasicLink.vue");
+/* harmony import */ var _Pages_Groups_components_show_PaymentItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Groups/components/show/PaymentItem */ "./resources/js/Pages/Groups/components/show/PaymentItem.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5102,13 +5160,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "PaymentsCard.vue",
   components: {
-    PaymentItem: _Pages_Groups_components_show_PaymentItem__WEBPACK_IMPORTED_MODULE_0__.default
+    PaymentItem: _Pages_Groups_components_show_PaymentItem__WEBPACK_IMPORTED_MODULE_1__.default,
+    BasicLink: _Components_Link_BasicLink__WEBPACK_IMPORTED_MODULE_0__.default
   },
   props: {
-    payments: Array,
+    payments: Object,
     users: Array,
     categories: Array
   }
@@ -32900,12 +32960,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "install": () => (/* binding */ install)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
 /* harmony import */ var lodash_isEqual__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/isEqual */ "./node_modules/lodash/isEqual.js");
 /* harmony import */ var lodash_isEqual__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_isEqual__WEBPACK_IMPORTED_MODULE_4__);
@@ -33013,7 +33070,7 @@ if (typeof window !== 'undefined') {
 
 function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var DEFAULT_OPTIONS = {
   container: false,
   delay: 0,
@@ -33064,11 +33121,11 @@ var Tooltip = /*#__PURE__*/function () {
   function Tooltip(_reference, _options) {
     var _this = this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Tooltip);
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__.default)(this, Tooltip);
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "_events", []);
+    (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)(this, "_events", []);
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "_setTooltipNodeEvent", function (evt, reference, delay, options) {
+    (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)(this, "_setTooltipNodeEvent", function (evt, reference, delay, options) {
       var relatedreference = evt.relatedreference || evt.toElement || evt.relatedTarget;
 
       var callback = function callback(evt2) {
@@ -33117,7 +33174,7 @@ var Tooltip = /*#__PURE__*/function () {
    */
 
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Tooltip, [{
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__.default)(Tooltip, [{
     key: "show",
     value: function show() {
       this._show(this.reference, this.options);
@@ -33732,7 +33789,7 @@ if (typeof document !== 'undefined') {
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var state = {
   enabled: true
 };
@@ -34019,7 +34076,7 @@ var vclosepopover = {
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function getDefault(key) {
   var value = directive.options.popover[key];
@@ -34165,7 +34222,7 @@ var script = {
   },
   computed: {
     cssClass: function cssClass() {
-      return _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, this.openClass, this.isOpen);
+      return (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__.default)({}, this.openClass, this.isOpen);
     },
     popoverId: function popoverId() {
       return "popover_".concat(this.ariaId != null ? this.ariaId : this.id);
@@ -44630,7 +44687,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "flex justify-between flex-wrap" },
+          { staticClass: "flex justify-around flex-wrap" },
           _vm._l(_vm.filteredGroups, function(group) {
             return _c("group-card", { key: group.id, attrs: { group: group } })
           }),
@@ -44725,13 +44782,13 @@ var render = function() {
                   _c(
                     "inertia-link",
                     {
-                      staticClass: "inline-flex items-center px-4 py-2",
+                      staticClass:
+                        "inline-flex items-center px-4 py-2 hover:text-green-500 focus:text-green-500",
                       attrs: { href: _vm.group.links.edit }
                     },
                     [
                       _c("i", {
-                        staticClass:
-                          "fas fa-cog cursor-pointer text-2xl hover:text-green-500 focus:text-green-500"
+                        staticClass: "fas fa-cog cursor-pointer text-2xl"
                       })
                     ]
                   )
@@ -44755,13 +44812,20 @@ var render = function() {
         [
           _c("payments-card", {
             attrs: {
-              payments: _vm.group.payments,
-              users: _vm.group.users,
-              categories: _vm.group.categories
+              payments: _vm.payments,
+              users: _vm.users,
+              categories: _vm.categories
             }
           }),
           _vm._v(" "),
-          _c("group-info-card", { attrs: { group: _vm.group } })
+          _c("group-info-card", {
+            attrs: {
+              group: _vm.group,
+              payments: _vm.payments,
+              users: _vm.users,
+              categories: _vm.categories
+            }
+          })
         ],
         1
       )
@@ -45011,7 +45075,7 @@ var render = function() {
           staticClass: "mb-2",
           attrs: {
             title: _vm.__("groups.show.description.countPayments"),
-            data: _vm.group.payments ? _vm.group.payments.length : 0
+            data: _vm.payments.meta.total
           }
         }),
         _vm._v(" "),
@@ -45019,7 +45083,7 @@ var render = function() {
           staticClass: "mb-2",
           attrs: {
             title: _vm.__("groups.show.description.countUsers"),
-            data: _vm.group.users ? _vm.group.users.length : 0
+            data: _vm.users.length
           }
         }),
         _vm._v(" "),
@@ -45054,6 +45118,69 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "my-2 py-2" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex justify-between items-center border-b border-gray-400 mb-2"
+            },
+            [
+              _c("h4", { staticClass: "text-lg" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.__("groups.show.description.categories")) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "inertia-link",
+                {
+                  staticClass: "inline-flex items-center",
+                  attrs: { href: "#" }
+                },
+                [
+                  _c("i", {
+                    staticClass:
+                      "fas fa-plus cursor-pointer text-lg hover:text-green-500 focus:text-green-500"
+                  })
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex flex-wrap justify-between" },
+            _vm._l(_vm.categories, function(category) {
+              return _c(
+                "div",
+                {
+                  key: category.id,
+                  staticClass: "mb-1 cursor-default w-1/2 text-sm pl-4 relative"
+                },
+                [
+                  _c("div", {
+                    staticClass: "bookmark left-0 top-0",
+                    style: {
+                      borderLeftColor: category.color,
+                      borderRightColor: category.color
+                    }
+                  }),
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(category.name) +
+                      "\n                "
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "my-2 py-2" }, [
           _c("h4", { staticClass: "mb-2 text-lg border-b border-gray-400" }, [
             _vm._v(
               "\n                " +
@@ -45065,13 +45192,13 @@ var render = function() {
           _c(
             "div",
             { staticClass: "flex flex-wrap justify-between" },
-            _vm._l(_vm.group.users, function(user) {
+            _vm._l(_vm.users, function(user) {
               return _c(
                 "div",
                 {
                   key: user.id,
                   staticClass:
-                    "mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700 "
+                    "mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700"
                 },
                 [
                   _vm._v(
@@ -45154,12 +45281,12 @@ var render = function() {
               expression: "getCategory(payment.category_id).name"
             }
           ],
-          staticClass: "bookmark",
+          staticClass: "bookmark top-0 right-0",
           style: _vm.borderColor
         }),
         _vm._v(" "),
         _c("span", { staticClass: "mx-auto" }, [
-          _vm._v(_vm._s(_vm.payment.amount + ""))
+          _vm._v(_vm._s(_vm.payment.amount))
         ])
       ])
     ]
@@ -45223,7 +45350,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._l(_vm.payments, function(payment) {
+          _vm._l(_vm.payments.data, function(payment) {
             return _c("payment-item", {
               key: payment.id,
               attrs: {
@@ -45232,7 +45359,49 @@ var render = function() {
                 categories: _vm.categories
               }
             })
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-wrap justify-between" }, [
+            _c(
+              "div",
+              [
+                _vm.payments.links.prev
+                  ? _c(
+                      "basic-link",
+                      { attrs: { href: _vm.payments.links.prev } },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.__("groups.show.payments.prev")) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _vm.payments.links.next
+                  ? _c(
+                      "basic-link",
+                      { attrs: { href: _vm.payments.links.next } },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.__("groups.show.payments.next")) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ],
+              1
+            )
+          ])
         ],
         2
       )

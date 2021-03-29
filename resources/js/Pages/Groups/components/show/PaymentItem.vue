@@ -8,8 +8,8 @@
             </div>
         </div>
         <div class="w-1/3 relative">
-            <div class="bookmark" :style="borderColor" v-tooltip="getCategory(payment.category_id).name"></div>
-            <span class="mx-auto">{{ payment.amount + '' }}</span>
+            <div class="bookmark top-0 right-0" :style="borderColor" v-tooltip="getCategory(payment.category_id).name"></div>
+            <span class="mx-auto">{{ payment.amount }}</span>
         </div>
     </div>
 </template>

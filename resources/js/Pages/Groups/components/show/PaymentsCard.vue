@@ -12,26 +12,42 @@
                     {{ __('groups.show.payments.amount') }}
                 </div>
             </div>
-            <payment-item v-for="payment in payments"
+            <payment-item v-for="payment in payments.data"
                           :key="payment.id"
                           :payment="payment"
                           :users="users"
                           :categories="categories">
             </payment-item>
+            <div class="flex flex-wrap justify-between">
+                <div>
+                    <basic-link v-if="payments.links.prev"
+                                :href="payments.links.prev">
+                        {{ __('groups.show.payments.prev') }}
+                    </basic-link>
+                </div>
+                <div>
+                    <basic-link v-if="payments.links.next"
+                                :href="payments.links.next">
+                        {{ __('groups.show.payments.next') }}
+                    </basic-link>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import BasicLink from "@/Components/Link/BasicLink";
 import PaymentItem from "@/Pages/Groups/components/show/PaymentItem";
 
 export default {
     name: "PaymentsCard.vue",
     components: {
         PaymentItem,
+        BasicLink
     },
     props: {
-        payments: Array,
+        payments: Object,
         users: Array,
         categories: Array,
     },

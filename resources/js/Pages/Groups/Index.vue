@@ -22,7 +22,7 @@
                 </inertia-link>
             </div>
 
-            <div class="flex justify-between flex-wrap">
+            <div class="flex justify-around flex-wrap">
                 <group-card v-for="group in filteredGroups" :key="group.id" :group="group"></group-card>
             </div>
 
