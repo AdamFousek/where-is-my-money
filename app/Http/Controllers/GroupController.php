@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Group;
 use App\Models\Payment;
 use App\Services\GroupService;
+use App\Services\PaymentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +24,22 @@ class GroupController extends Controller
      */
     protected $groupService;
 
-    public function __construct(GroupService $groupService)
-    {
+    /**
+     * @var PaymentService
+     */
+    protected $paymentService;
+
+    /**
+     * GroupController constructor.
+     * @param GroupService $groupService
+     * @param PaymentService $paymentService
+     */
+    public function __construct(
+        GroupService $groupService,
+        PaymentService $paymentService
+    ) {
         $this->groupService = $groupService;
+        $this->paymentService = $paymentService;
     }
 
     /**
@@ -74,20 +88,29 @@ class GroupController extends Controller
      * Display the specified resource.
      *
      * @param Group $group
+     * @param Request $request
      * @return Response
      */
-    public function show(Group $group): Response
+    public function show(Group $group, Request $request): Response
     {
         $users = $group->users;
         if (!$users->contains(Auth::id())) {
             abort(404);
         }
 
+        $filter = $request->only([
+            'categories',
+            'users',
+            'order',
+            'orderdir',
+        ]);
+
         $data = [
             'group' => new GroupResource($group),
-            'payments' => PaymentResource::collection(Payment::where('group_id', $group->id)->latest()->paginate(15)),
+            'payments' => PaymentResource::collection($this->paymentService->getFilteredPayments($group, $filter)),
             'users' => $users,
             'categories' => PaymentCategoryResource::collection($group->categories),
+            'filter' => $filter,
         ];
 
         return Inertia::render('Groups/Show', $data);

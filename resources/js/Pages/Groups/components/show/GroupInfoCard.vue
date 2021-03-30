@@ -49,7 +49,9 @@
                             borderLeftColor: category.color,
                             borderRightColor: category.color
                         }"></div>
-                        {{ category.name }}
+                        <span @click="filterPayments('categories', category.id)">
+                            {{ category.name }}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -61,7 +63,9 @@
                 <div class="flex flex-wrap justify-between">
                     <div class="mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700"
                          v-for="user in users" :key="user.id">
-                        {{ user.display_name }}
+                        <span @click="filterPayments('users', user.id)">
+                            {{ user.display_name }}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -83,6 +87,11 @@ export default {
         payments: Object,
         categories: Array,
     },
+    methods: {
+        filterPayments(section, id) {
+            this.$emit('filterPayments', {section, id});
+        }
+    }
 }
 </script>
 

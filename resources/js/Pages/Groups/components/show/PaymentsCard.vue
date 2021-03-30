@@ -16,7 +16,8 @@
                           :key="payment.id"
                           :payment="payment"
                           :users="users"
-                          :categories="categories">
+                          :categories="categories"
+                          @filterPayments="filterPayments"  >
             </payment-item>
             <div class="flex flex-wrap justify-between">
                 <div>
@@ -51,6 +52,11 @@ export default {
         users: Array,
         categories: Array,
     },
+    methods: {
+        filterPayments(value) {
+            this.$emit('filterPayments', value);
+        }
+    }
 }
 </script>
 

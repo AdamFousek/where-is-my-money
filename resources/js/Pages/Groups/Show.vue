@@ -20,11 +20,13 @@
         <div class="max-w-7xl mx-auto flex items-start justify-between flex-wrap sm:px-6 lg:px-8">
             <payments-card :payments="payments"
                            :users="users"
-                           :categories="categories"></payments-card>
+                           :categories="categories"
+                           @filterPayments="filterPayments"></payments-card>
             <group-info-card :group="group"
                              :payments="payments"
                              :users="users"
-                             :categories="categories"></group-info-card>
+                             :categories="categories"
+                             @filterPayments="filterPayments"></group-info-card>
         </div>
     </app-layout>
 </template>
@@ -41,6 +43,7 @@ export default {
         payments: Object,
         categories: Array,
         users: Array,
+        filter: Array,
     },
     components: {
         AppLayout,
@@ -62,6 +65,10 @@ export default {
                 },
             })
         },
+        filterPayments(value) {
+            console.log(this.filter);
+            console.log(value);
+        }
     },
 }
 </script>

@@ -8,7 +8,10 @@
             </div>
         </div>
         <div class="w-1/3 relative">
-            <div class="bookmark top-0 right-0" :style="borderColor" v-tooltip="getCategory(payment.category_id).name"></div>
+            <div class="bookmark top-0 right-0" :style="borderColor"
+                        v-tooltip="getCategory(payment.category_id).name"
+                        @click="filterPayments('categories', payment.category_id)"
+            ></div>
             <span class="mx-auto">{{ payment.amount }}</span>
         </div>
     </div>
@@ -32,6 +35,9 @@ export default {
         },
         getCategory(id) {
             return this.categories.find(user => user.id === id);
+        },
+        filterPayments(section, id) {
+            this.$emit('filterPayments', {section, id});
         }
     },
     computed: {

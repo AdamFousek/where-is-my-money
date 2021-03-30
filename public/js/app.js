@@ -4809,6 +4809,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4818,7 +4820,8 @@ __webpack_require__.r(__webpack_exports__);
     group: Object,
     payments: Object,
     categories: Array,
-    users: Array
+    users: Array,
+    filter: Array
   },
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -4842,6 +4845,10 @@ __webpack_require__.r(__webpack_exports__);
           _this.favoriteForm.reset();
         }
       });
+    },
+    filterPayments: function filterPayments(value) {
+      console.log(this.filter);
+      console.log(value);
     }
   }
 });
@@ -5029,6 +5036,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "GroupInfoCard.vue",
@@ -5040,6 +5051,14 @@ __webpack_require__.r(__webpack_exports__);
     users: Array,
     payments: Object,
     categories: Array
+  },
+  methods: {
+    filterPayments: function filterPayments(section, id) {
+      this.$emit('filterPayments', {
+        section: section,
+        id: id
+      });
+    }
   }
 });
 
@@ -5056,6 +5075,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -5093,6 +5115,12 @@ __webpack_require__.r(__webpack_exports__);
     getCategory: function getCategory(id) {
       return this.categories.find(function (user) {
         return user.id === id;
+      });
+    },
+    filterPayments: function filterPayments(section, id) {
+      this.$emit('filterPayments', {
+        section: section,
+        id: id
       });
     }
   },
@@ -5159,6 +5187,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5171,6 +5200,11 @@ __webpack_require__.r(__webpack_exports__);
     payments: Object,
     users: Array,
     categories: Array
+  },
+  methods: {
+    filterPayments: function filterPayments(value) {
+      this.$emit('filterPayments', value);
+    }
   }
 });
 
@@ -44815,7 +44849,8 @@ var render = function() {
               payments: _vm.payments,
               users: _vm.users,
               categories: _vm.categories
-            }
+            },
+            on: { filterPayments: _vm.filterPayments }
           }),
           _vm._v(" "),
           _c("group-info-card", {
@@ -44824,7 +44859,8 @@ var render = function() {
               payments: _vm.payments,
               users: _vm.users,
               categories: _vm.categories
-            }
+            },
+            on: { filterPayments: _vm.filterPayments }
           })
         ],
         1
@@ -45168,10 +45204,23 @@ var render = function() {
                       borderRightColor: category.color
                     }
                   }),
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(category.name) +
-                      "\n                "
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.filterPayments("categories", category.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(category.name) +
+                          "\n                    "
+                      )
+                    ]
                   )
                 ]
               )
@@ -45201,10 +45250,22 @@ var render = function() {
                     "mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700"
                 },
                 [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(user.display_name) +
-                      "\n                "
+                  _c(
+                    "span",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.filterPayments("users", user.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(user.display_name) +
+                          "\n                    "
+                      )
+                    ]
                   )
                 ]
               )
@@ -45282,7 +45343,12 @@ var render = function() {
             }
           ],
           staticClass: "bookmark top-0 right-0",
-          style: _vm.borderColor
+          style: _vm.borderColor,
+          on: {
+            click: function($event) {
+              return _vm.filterPayments("categories", _vm.payment.category_id)
+            }
+          }
         }),
         _vm._v(" "),
         _c("span", { staticClass: "mx-auto" }, [
@@ -45357,7 +45423,8 @@ var render = function() {
                 payment: payment,
                 users: _vm.users,
                 categories: _vm.categories
-              }
+              },
+              on: { filterPayments: _vm.filterPayments }
             })
           }),
           _vm._v(" "),
