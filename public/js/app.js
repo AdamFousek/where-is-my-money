@@ -45360,10 +45360,8 @@ var render = function() {
                     {
                       staticClass: "cursor-pointer hover:text-green-700",
                       class: {
-                        "font-bold": _vm.filter.categories
-                          ? _vm.filter.categories.indexOf(
-                              user.id.toString()
-                            ) !== -1
+                        "font-bold": _vm.filter.users
+                          ? _vm.filter.users.indexOf(user.id.toString()) !== -1
                           : false
                       },
                       on: {

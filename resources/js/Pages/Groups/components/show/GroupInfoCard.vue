@@ -66,7 +66,7 @@
                     <div class="mb-1 w-1/2 text-xs text-gray-700 hover:text-green-700"
                          v-for="user in users" :key="user.id">
                         <span class="cursor-pointer hover:text-green-700"
-                              :class="{ 'font-bold': filter.categories ? filter.categories.indexOf(user.id.toString()) !== -1 : false }"
+                              :class="{ 'font-bold': filter.users ? filter.users.indexOf(user.id.toString()) !== -1 : false }"
                               @click="filterPayments('users', user.id)">
                             {{ user.display_name }}
                         </span>

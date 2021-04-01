@@ -105,9 +105,12 @@ class GroupController extends Controller
             'orderDir',
         ]);
 
+        $payments = Payment::where('group_id', $group->id)->withFilters()->paginate(15);
+        $payments->appends(request()->input())->links();
+
         $data = [
             'group' => new GroupResource($group),
-            'payments' => PaymentResource::collection(Payment::where('group_id', $group->id)->withFilters()->paginate(15)),
+            'payments' => PaymentResource::collection($payments),
             'users' => $users,
             'categories' => PaymentCategoryResource::collection($group->categories),
             'filter' => $filter,
