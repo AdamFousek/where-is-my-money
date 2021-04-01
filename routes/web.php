@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::put('group/{group}/toggle-favorite', [GroupController::class, 'toggleFavorite'])->name('group.toggleFavorite');
     Route::resource('group', GroupController::class);
+
+    Route::get('payments/{group:id}', [PaymentController::class, 'filter'])->name('payment.filter');
+    Route::resource('payments', PaymentController::class);
 });

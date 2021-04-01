@@ -5,11 +5,27 @@
         </h2>
         <div class="py-2">
             <div class="flex flex-wrap justify-between my-2">
-                <div class="w-2/3 cursor-pointer">
+                <div class="w-2/3 cursor-pointer "
+                     :class="{ 'font-bold': filter.order === 'created_at' }"
+                     @click="orderPayments('created_at', filter.orderDir === 'asc' ? 'desc' : 'asc')">
                     {{ __('groups.show.payments.name') }}
+                    <i class="fas"
+                       :class="{
+                        'fa-sort': !filter.order,
+                        'fa-sort-down': filter.order === 'created_at' && filter.orderDir === 'desc',
+                        'fa-sort-up': filter.order === 'created_at' && filter.orderDir === 'asc',
+                    }"></i>
                 </div>
-                <div class="w-1/3 cursor-pointer text-center">
+                <div class="w-1/3 cursor-pointer text-center"
+                     :class="{ 'font-bold': filter.order === 'amount' }"
+                     @click="orderPayments('amount', filter.orderDir === 'asc' ? 'desc' : 'asc')">
                     {{ __('groups.show.payments.amount') }}
+                    <i class="fas"
+                       :class="{
+                        'fa-sort': !filter.order,
+                        'fa-sort-down': filter.order === 'amount' && filter.orderDir === 'desc',
+                        'fa-sort-up': filter.order === 'amount' && filter.orderDir === 'asc',
+                    }"></i>
                 </div>
             </div>
             <payment-item v-for="payment in payments.data"
@@ -17,7 +33,7 @@
                           :payment="payment"
                           :users="users"
                           :categories="categories"
-                          @filterPayments="filterPayments"  >
+                          @filterPayments="filterPayments">
             </payment-item>
             <div class="flex flex-wrap justify-between">
                 <div>
@@ -51,10 +67,14 @@ export default {
         payments: Object,
         users: Array,
         categories: Array,
+        filter: Object|Array,
     },
     methods: {
         filterPayments(value) {
             this.$emit('filterPayments', value);
+        },
+        orderPayments(order, orderDir) {
+            this.$emit('filterPayments', {order, orderDir});
         }
     }
 }

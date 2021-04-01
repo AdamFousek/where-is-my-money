@@ -49,7 +49,9 @@
                             borderLeftColor: category.color,
                             borderRightColor: category.color
                         }"></div>
-                        <span @click="filterPayments('categories', category.id)">
+                        <span class="cursor-pointer hover:text-green-700"
+                              :class="{ 'font-bold': filter.categories ? filter.categories.indexOf(category.id.toString()) !== -1 : false }"
+                              @click="filterPayments('categories', category.id)">
                             {{ category.name }}
                         </span>
                     </div>
@@ -61,9 +63,11 @@
                     {{ __('groups.show.description.users') }}
                 </h4>
                 <div class="flex flex-wrap justify-between">
-                    <div class="mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700"
+                    <div class="mb-1 w-1/2 text-xs text-gray-700 hover:text-green-700"
                          v-for="user in users" :key="user.id">
-                        <span @click="filterPayments('users', user.id)">
+                        <span class="cursor-pointer hover:text-green-700"
+                              :class="{ 'font-bold': filter.categories ? filter.categories.indexOf(user.id.toString()) !== -1 : false }"
+                              @click="filterPayments('users', user.id)">
                             {{ user.display_name }}
                         </span>
                     </div>
@@ -86,6 +90,7 @@ export default {
         users: Array,
         payments: Object,
         categories: Array,
+        filter: Object | Array,
     },
     methods: {
         filterPayments(section, id) {

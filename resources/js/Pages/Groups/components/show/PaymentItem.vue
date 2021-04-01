@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="w-1/3 relative">
-            <div class="bookmark top-0 right-0" :style="borderColor"
+            <div class="bookmark top-0 right-0 cursor-pointer" :style="borderColor"
                         v-tooltip="getCategory(payment.category_id).name"
                         @click="filterPayments('categories', payment.category_id)"
             ></div>
@@ -24,6 +24,7 @@ export default {
         payment: Object,
         users: Array,
         categories: Array,
+        filter: Object|Array,
     },
     methods: {
         getUserName(id, fullname = false) {

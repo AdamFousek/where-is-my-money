@@ -4778,6 +4778,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Pages_Groups_components_show_PaymentsCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Groups/components/show/PaymentsCard */ "./resources/js/Pages/Groups/components/show/PaymentsCard.vue");
 /* harmony import */ var _Pages_Groups_components_show_GroupInfoCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Groups/components/show/GroupInfoCard */ "./resources/js/Pages/Groups/components/show/GroupInfoCard.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4821,7 +4833,7 @@ __webpack_require__.r(__webpack_exports__);
     payments: Object,
     categories: Array,
     users: Array,
-    filter: Array
+    filter: Object | Array
   },
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -4831,24 +4843,63 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       isFavorite: this.group.is_favorite,
-      favoriteForm: this.$inertia.form({})
+      showLoader: false
     };
   },
   methods: {
     markFavoriteGroup: function markFavoriteGroup() {
       var _this = this;
 
-      this.favoriteForm.put(this.group.links.toggleFavorite, {
-        onSuccess: function onSuccess() {
+      var url = this.group.links.toggleFavorite;
+      this.$inertia.visit(url, {
+        method: 'put',
+        replace: true,
+        preserveScroll: true,
+        onStart: function onStart(visit) {
+          _this.showLoader = true;
+        },
+        onSuccess: function onSuccess(page) {
           _this.isFavorite = !_this.isFavorite;
-
-          _this.favoriteForm.reset();
+        },
+        onFinish: function onFinish(visit) {
+          _this.showLoader = false;
         }
       });
     },
     filterPayments: function filterPayments(value) {
-      console.log(this.filter);
-      console.log(value);
+      var _this2 = this;
+
+      var filter = _objectSpread({}, this.filter);
+
+      if (value.section) {
+        if (filter[value.section]) {
+          if (filter[value.section].indexOf(value.id.toString()) !== -1) {
+            filter[value.section].splice(filter[value.section].indexOf(value.id.toString()), 1);
+          } else {
+            filter[value.section].push(value.id);
+          }
+        } else {
+          filter[value.section] = [value.id];
+        }
+      } else {
+        filter.order = value.order;
+        filter.orderDir = value.orderDir;
+      }
+
+      this.showLoader = true;
+      this.$inertia.visit(this.group.links.show, {
+        method: 'get',
+        data: filter,
+        replace: true,
+        preserveScroll: true,
+        onStart: function onStart(visit) {
+          _this2.showLoader = true;
+        },
+        onSuccess: function onSuccess(page) {},
+        onFinish: function onFinish(visit) {
+          _this2.showLoader = false;
+        }
+      });
     }
   }
 });
@@ -5040,6 +5091,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "GroupInfoCard.vue",
@@ -5050,7 +5105,8 @@ __webpack_require__.r(__webpack_exports__);
     group: Object,
     users: Array,
     payments: Object,
-    categories: Array
+    categories: Array,
+    filter: Object | Array
   },
   methods: {
     filterPayments: function filterPayments(section, id) {
@@ -5099,7 +5155,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     payment: Object,
     users: Array,
-    categories: Array
+    categories: Array,
+    filter: Object | Array
   },
   methods: {
     getUserName: function getUserName(id) {
@@ -5188,6 +5245,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5199,11 +5272,18 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     payments: Object,
     users: Array,
-    categories: Array
+    categories: Array,
+    filter: Object | Array
   },
   methods: {
     filterPayments: function filterPayments(value) {
       this.$emit('filterPayments', value);
+    },
+    orderPayments: function orderPayments(order, orderDir) {
+      this.$emit('filterPayments', {
+        order: order,
+        orderDir: orderDir
+      });
     }
   }
 });
@@ -44837,6 +44917,21 @@ var render = function() {
     },
     [
       _vm._v(" "),
+      _vm.showLoader
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "flex items-center justify-center fixed top-0 left-0 w-full h-full z-50 bg-gray-200 bg-opacity-50"
+            },
+            [
+              _c("div", { staticClass: "text-3xl text-black" }, [
+                _vm._v("Loading...")
+              ])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "div",
         {
@@ -44848,7 +44943,8 @@ var render = function() {
             attrs: {
               payments: _vm.payments,
               users: _vm.users,
-              categories: _vm.categories
+              categories: _vm.categories,
+              filter: _vm.filter
             },
             on: { filterPayments: _vm.filterPayments }
           }),
@@ -44858,7 +44954,8 @@ var render = function() {
               group: _vm.group,
               payments: _vm.payments,
               users: _vm.users,
-              categories: _vm.categories
+              categories: _vm.categories,
+              filter: _vm.filter
             },
             on: { filterPayments: _vm.filterPayments }
           })
@@ -45208,6 +45305,14 @@ var render = function() {
                   _c(
                     "span",
                     {
+                      staticClass: "cursor-pointer hover:text-green-700",
+                      class: {
+                        "font-bold": _vm.filter.categories
+                          ? _vm.filter.categories.indexOf(
+                              category.id.toString()
+                            ) !== -1
+                          : false
+                      },
                       on: {
                         click: function($event) {
                           return _vm.filterPayments("categories", category.id)
@@ -45247,12 +45352,20 @@ var render = function() {
                 {
                   key: user.id,
                   staticClass:
-                    "mb-1 cursor-default w-1/2 text-xs text-gray-700 hover:text-green-700"
+                    "mb-1 w-1/2 text-xs text-gray-700 hover:text-green-700"
                 },
                 [
                   _c(
                     "span",
                     {
+                      staticClass: "cursor-pointer hover:text-green-700",
+                      class: {
+                        "font-bold": _vm.filter.categories
+                          ? _vm.filter.categories.indexOf(
+                              user.id.toString()
+                            ) !== -1
+                          : false
+                      },
                       on: {
                         click: function($event) {
                           return _vm.filterPayments("users", user.id)
@@ -45342,7 +45455,7 @@ var render = function() {
               expression: "getCategory(payment.category_id).name"
             }
           ],
-          staticClass: "bookmark top-0 right-0",
+          staticClass: "bookmark top-0 right-0 cursor-pointer",
           style: _vm.borderColor,
           on: {
             click: function($event) {
@@ -45399,21 +45512,75 @@ var render = function() {
         { staticClass: "py-2" },
         [
           _c("div", { staticClass: "flex flex-wrap justify-between my-2" }, [
-            _c("div", { staticClass: "w-2/3 cursor-pointer" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.__("groups.show.payments.name")) +
-                  "\n            "
-              )
-            ]),
+            _c(
+              "div",
+              {
+                staticClass: "w-2/3 cursor-pointer ",
+                class: { "font-bold": _vm.filter.order === "created_at" },
+                on: {
+                  click: function($event) {
+                    return _vm.orderPayments(
+                      "created_at",
+                      _vm.filter.orderDir === "asc" ? "desc" : "asc"
+                    )
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.__("groups.show.payments.name")) +
+                    "\n                "
+                ),
+                _c("i", {
+                  staticClass: "fas",
+                  class: {
+                    "fa-sort": !_vm.filter.order,
+                    "fa-sort-down":
+                      _vm.filter.order === "created_at" &&
+                      _vm.filter.orderDir === "desc",
+                    "fa-sort-up":
+                      _vm.filter.order === "created_at" &&
+                      _vm.filter.orderDir === "asc"
+                  }
+                })
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "w-1/3 cursor-pointer text-center" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.__("groups.show.payments.amount")) +
-                  "\n            "
-              )
-            ])
+            _c(
+              "div",
+              {
+                staticClass: "w-1/3 cursor-pointer text-center",
+                class: { "font-bold": _vm.filter.order === "amount" },
+                on: {
+                  click: function($event) {
+                    return _vm.orderPayments(
+                      "amount",
+                      _vm.filter.orderDir === "asc" ? "desc" : "asc"
+                    )
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.__("groups.show.payments.amount")) +
+                    "\n                "
+                ),
+                _c("i", {
+                  staticClass: "fas",
+                  class: {
+                    "fa-sort": !_vm.filter.order,
+                    "fa-sort-down":
+                      _vm.filter.order === "amount" &&
+                      _vm.filter.orderDir === "desc",
+                    "fa-sort-up":
+                      _vm.filter.order === "amount" &&
+                      _vm.filter.orderDir === "asc"
+                  }
+                })
+              ]
+            )
           ]),
           _vm._v(" "),
           _vm._l(_vm.payments.data, function(payment) {

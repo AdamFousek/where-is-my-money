@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PaymentResource extends JsonResource
@@ -23,6 +24,11 @@ class PaymentResource extends JsonResource
             'user_id' => $this->user_id,
             'user' => new UserResource($this->whenLoaded('user')),
             'category' => new PaymentCategoryResource($this->whenLoaded('category')),
+
+            'links' => [
+                'edit' => action([PaymentController::class, 'edit'], $this),
+                'show' => action([PaymentController::class, 'show'], $this),
+            ]
         ];
     }
 }

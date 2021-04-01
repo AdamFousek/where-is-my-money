@@ -33,9 +33,9 @@ class GroupResource extends JsonResource
             'users' => UserResource::collection($this->whenLoaded('users')),
 
             'links' => [
-                'show' => action([GroupController::class, 'show'], $this),
-                'edit' => action([GroupController::class, 'edit'], $this),
-                'toggleFavorite' => action([GroupController::class, 'toggleFavorite'], $this),
+                'show' => route('group.show', $this),
+                'edit' => route('group.edit', $this),
+                'toggleFavorite' => route('group.toggleFavorite', $this),
             ]
         ];
     }

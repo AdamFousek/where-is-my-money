@@ -80,4 +80,16 @@ class Payment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeWithFilters($query) {
+        return $query->when(request()->has('categories'), function ($query) {
+            $query->whereIn('category_id', request()->get('categories'));
+        })->when(request()->has('users'), function($query) {
+            $query->whereIn('user_id', request()->get('users'));
+        })->when(true, function ($query) {
+            $order = request()->get('order', 'created_at');
+            $orderDir = request()->get('orderDir', 'desc');
+            $query->orderBy($order, $orderDir);
+        });
+    }
+
 }
